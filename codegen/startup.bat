@@ -1,0 +1,2 @@
+cd ..
+gradle idea bootrepackage

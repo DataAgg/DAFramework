@@ -1,0 +1,90 @@
+version: '2'
+services:
+  config:
+    environment:
+      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+    image: java:8-jre
+    volumes:
+      - ../config/build/libs/:/app/
+    ports:
+      - 8888:8888
+    command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
+
+  registry:
+    environment:
+      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+    image: java:8-jre
+    volumes:
+      - ../registry/build/libs/:/app/
+    ports:
+      - 8761:8761
+    command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
+
+  gateway:
+    environment:
+      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+    image: java:8-jre
+    volumes:
+      - ../gateway/build/libs/:/app/
+    ports:
+      - 4000:4000
+    command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
+
+  auth-service:
+    environment:
+      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+      ACCOUNT_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+    image: java:8-jre
+    volumes:
+      - ../auth-service/build/libs/:/app/
+    ports:
+      - 5000:5000
+    command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
+
+  account-service:
+    environment:
+      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+      ACCOUNT_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+    image: java:8-jre
+    volumes:
+      - ../account-service/build/libs/:/app/
+    ports:
+      - 6000:6000
+    command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
+
+  # statistics-service:
+  #   environment:
+  #     CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+  #     MONGODB_PASSWORD: YFzCAfocMInyJ5YaO805
+  #     STATISTICS_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+  #   image: sqshq/dataagg-statistics-service
+  #   restart: always
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "10"
+
+  # notification-service:
+  #   environment:
+  #     CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+  #     MONGODB_PASSWORD: YFzCAfocMInyJ5YaO805
+  #     NOTIFICATION_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+  #   image: sqshq/dataagg-notification-service
+  #   restart: always
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "10"
+
+  # monitoring:
+  #   environment:
+  #     CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+  #   image: sqshq/dataagg-monitoring
+  #   restart: always
+  #   ports:
+  #     - 9000:8080
+  #     - 8989:8989
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "10"

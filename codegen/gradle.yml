@@ -1,0 +1,82 @@
+WorkDir: ..
+GenType: gradle
+
+props: {}
+group: com.dataagg
+project: DAFramework
+version: 0.1
+plugins: [eclipse, idea, 'com.github.ben-manes.versions:0.13.0']
+description: DAFramework
+subProjects:
+  config:
+    version: 0.1
+    archiveName: app.jar
+    description: config server
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.1.RELEASE']
+    deps:
+      - compile 'org.springframework.cloud:spring-cloud-config-server'
+      - compile 'org.springframework.boot:spring-boot-starter-security'
+    dependencyManagement:
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+  registry:
+    version: 0.1
+    archiveName: app.jar
+    description: Service registry
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.1.RELEASE']
+    deps:
+      - compile 'org.springframework.cloud:spring-cloud-starter-config'
+      - testCompile 'org.springframework.boot:spring-boot-starter-test'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
+    dependencyManagement:
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+  gateway:
+    version: 0.1
+    archiveName: app.jar
+    description: api gateway
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.1.RELEASE']
+    deps:
+      - compile 'org.springframework.cloud:spring-cloud-starter-config'
+      - testCompile 'org.springframework.boot:spring-boot-starter-test'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+      - compile 'org.springframework.cloud:spring-cloud-starter-zuul'
+    dependencyManagement:
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+  auth-service:
+    version: 0.1
+    archiveName: app.jar
+    description: auth service
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.1.RELEASE']
+    deps:
+      - compile 'org.springframework.cloud:spring-cloud-starter-config'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+      - compile 'org.springframework.boot:spring-boot-starter-web'
+      - compile 'org.springframework.boot:spring-boot-starter-security'
+      - compile 'org.springframework.security.oauth:spring-security-oauth2'
+      - compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.2.0'
+      - compile 'mysql:mysql-connector-java:5.1.9'
+      - compile 'com.alibaba:druid:1.0.26'
+      - compile 'com.baomidou:mybatis-plus:2.0.1'
+      - testCompile 'org.springframework.boot:spring-boot-starter-test'
+    dependencyManagement:
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+  account-service:
+    version: 0.1
+    archiveName: app.jar
+    description: account service
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.1.RELEASE']
+    deps:
+      - compile 'org.springframework.cloud:spring-cloud-starter-config'
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+      - compile 'org.springframework.boot:spring-boot-starter-web'
+      - compile 'org.springframework.boot:spring-boot-starter-security'
+      - compile 'org.springframework.security.oauth:spring-security-oauth2'
+      - compile 'org.springframework.cloud:spring-cloud-starter-feign'
+      - compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
+      - compile 'org.springframework.cloud:spring-cloud-security:1.1.3.RELEASE'
+      - compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.2.0'
+      - compile 'mysql:mysql-connector-java:5.1.9'
+      - compile 'com.alibaba:druid:1.0.26'
+      - compile 'com.baomidou:mybatis-plus:2.0.1'
+      - testCompile 'org.springframework.boot:spring-boot-starter-test'
+    dependencyManagement:
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }

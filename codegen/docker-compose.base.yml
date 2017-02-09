@@ -1,0 +1,25 @@
+version: '2'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 15672:15672
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  # mongodb:
+  #   environment:
+  #     INIT_DUMP: account-service-dump.js
+  #     MONGODB_PASSWORD: YFzCAfocMInyJ5YaO805
+  #   build:
+  #     context: ./mongodb
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "10"
+

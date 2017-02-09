@@ -1,0 +1,41 @@
+plugins {
+		id 'java'
+		id 'eclipse'
+		id 'idea'
+		id 'org.springframework.boot' version '1.5.1.RELEASE'
+}
+
+group = 'com.dataagg'
+version = '0.1'
+description = """api gateway"""
+
+
+dependencies {
+	compile 'org.springframework.cloud:spring-cloud-starter-config'
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+	compile 'org.springframework.cloud:spring-cloud-starter-zuul'
+}
+
+dependencyManagement {
+	imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+}
+
+
+jar {
+	baseName = 'gateway'
+	version = '0.1'
+	archiveName = 'app.jar'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	options.encoding = "UTF-8"
+}
+configurations {
+	published
+}

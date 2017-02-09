@@ -1,0 +1,552 @@
+{
+  "dependencies": [{
+    "id": "security",
+    "name": "Security",
+    "group": "Core",
+    "description": "Secure your application via spring-security",
+    "weight": 100
+  }, {
+    "id": "aop",
+    "name": "AOP",
+    "group": "Core",
+    "description": "Aspect-oriented programming including spring-aop and AspectJ"
+  }, {
+    "id": "jta-atomikos",
+    "name": "Atomikos (JTA)",
+    "group": "Core",
+    "description": "JTA distributed transactions via Atomikos"
+  }, {
+    "id": "jta-bitronix",
+    "name": "Bitronix (JTA)",
+    "group": "Core",
+    "description": "JTA distributed transactions via Bitronix"
+  }, {
+    "id": "jta-narayana",
+    "name": "Narayana (JTA)",
+    "group": "Core",
+    "description": "JTA distributed transactions via Narayana"
+  }, {
+    "id": "cache",
+    "name": "Cache",
+    "group": "Core",
+    "description": "Spring's Cache abstraction"
+  }, {
+    "id": "devtools",
+    "name": "DevTools",
+    "group": "Core",
+    "description": "Spring Boot Development Tools"
+  }, {
+    "id": "configuration-processor",
+    "name": "Configuration Processor",
+    "group": "Core",
+    "description": "Generate metadata for your custom configuration keys"
+  }, {
+    "id": "validation",
+    "name": "Validation",
+    "group": "Core",
+    "description": "JSR-303 validation infrastructure (already included with web)"
+  }, {
+    "id": "session",
+    "name": "Session",
+    "group": "Core",
+    "description": "API and implementations for managing a user\u2019s session information"
+  }, {
+    "id": "retry",
+    "name": "Retry",
+    "group": "Core",
+    "description": "Provide declarative retry support via spring-retry"
+  }, {
+    "id": "lombok",
+    "name": "Lombok",
+    "group": "Core",
+    "description": "Java annotation library which helps to reduce boilerplate code and code faster"
+  }, {
+    "id": "web",
+    "name": "Web",
+    "group": "Web",
+    "description": "Full-stack web development with Tomcat and Spring MVC",
+    "weight": 100
+  }, {
+    "id": "websocket",
+    "name": "Websocket",
+    "group": "Web",
+    "description": "Websocket development with SockJS and STOMP"
+  }, {
+    "id": "web-services",
+    "name": "Web Services",
+    "group": "Web",
+    "description": "Contract-first SOAP service development with Spring Web Services",
+    "keywords": "ws"
+  }, {
+    "id": "jersey",
+    "name": "Jersey (JAX-RS)",
+    "group": "Web",
+    "description": "RESTful Web Services framework"
+  }, {
+    "id": "ratpack",
+    "name": "Ratpack",
+    "group": "Web",
+    "description": "Spring Boot integration for the Ratpack framework"
+  }, {
+    "id": "vaadin",
+    "name": "Vaadin",
+    "group": "Web",
+    "description": "Vaadin java web application framework"
+  }, {
+    "id": "data-rest",
+    "name": "Rest Repositories",
+    "group": "Web",
+    "description": "Exposing Spring Data repositories over REST via spring-data-rest-webmvc",
+    "weight": 10
+  }, {
+    "id": "hateoas",
+    "name": "HATEOAS",
+    "group": "Web",
+    "description": "HATEOAS-based RESTful services"
+  }, {
+    "id": "data-rest-hal",
+    "name": "Rest Repositories HAL Browser",
+    "group": "Web",
+    "description": "Browsing Spring Data REST repositories in your browser"
+  }, {
+    "id": "mobile",
+    "name": "Mobile",
+    "group": "Web",
+    "description": "Simplify the development of mobile web applications with spring-mobile"
+  }, {
+    "id": "restdocs",
+    "name": "REST Docs",
+    "group": "Web",
+    "description": "Document RESTful services by combining hand-written and auto-generated documentation"
+  }, {
+    "id": "stormpath",
+    "name": "Stormpath",
+    "group": "Web",
+    "description": "Stormpath default starter including Spring MVC, Thymeleaf and Spring Security"
+  }, {
+    "id": "freemarker",
+    "name": "Freemarker",
+    "group": "Template Engines",
+    "description": "FreeMarker templating engine",
+    "keywords": "template"
+  }, {
+    "id": "groovy-templates",
+    "name": "Groovy Templates",
+    "group": "Template Engines",
+    "description": "Groovy templating engine"
+  }, {
+    "id": "thymeleaf",
+    "name": "Thymeleaf",
+    "group": "Template Engines",
+    "description": "Thymeleaf templating engine, including integration with Spring",
+    "weight": 100,
+    "keywords": "template"
+  }, {
+    "id": "mustache",
+    "name": "Mustache",
+    "group": "Template Engines",
+    "description": "Mustache templating engine",
+    "keywords": "template"
+  }, {
+    "id": "data-jpa",
+    "name": "JPA",
+    "group": "SQL",
+    "description": "Java Persistence API including spring-data-jpa, spring-orm and Hibernate",
+    "weight": 100,
+    "keywords": "jpa"
+  }, {
+    "id": "jooq",
+    "name": "JOOQ",
+    "group": "SQL",
+    "description": "Persistence support using Java Object Oriented Querying"
+  }, {
+    "id": "mybatis",
+    "name": "MyBatis",
+    "group": "SQL",
+    "description": "Persistence support using MyBatis"
+  }, {
+    "id": "jdbc",
+    "name": "JDBC",
+    "group": "SQL",
+    "description": "JDBC databases"
+  }, {
+    "id": "h2",
+    "name": "H2",
+    "group": "SQL",
+    "description": "H2 database (with embedded support)"
+  }, {
+    "id": "hsql",
+    "name": "HSQLDB",
+    "group": "SQL",
+    "description": "HSQLDB database (with embedded support)"
+  }, {
+    "id": "derby",
+    "name": "Apache Derby",
+    "group": "SQL",
+    "description": "Apache Derby database (with embedded support)"
+  }, {
+    "id": "mysql",
+    "name": "MySQL",
+    "group": "SQL",
+    "description": "MySQL jdbc driver"
+  }, {
+    "id": "postgresql",
+    "name": "PostgreSQL",
+    "group": "SQL",
+    "description": "PostgreSQL jdbc driver"
+  }, {
+    "id": "sqlserver",
+    "name": "SQL Server",
+    "group": "SQL",
+    "description": "Microsoft SQL Server jdbc driver"
+  }, {
+    "id": "flyway",
+    "name": "Flyway",
+    "group": "SQL",
+    "description": "Flyway Database Migrations library"
+  }, {
+    "id": "liquibase",
+    "name": "Liquibase",
+    "group": "SQL",
+    "description": "Liquibase Database Migrations library"
+  }, {
+    "id": "data-mongodb",
+    "name": "MongoDB",
+    "group": "NoSQL",
+    "description": "MongoDB NoSQL Database, including spring-data-mongodb",
+    "weight": 50
+  }, {
+    "id": "data-cassandra",
+    "name": "Cassandra",
+    "group": "NoSQL",
+    "description": "Cassandra NoSQL Database, including spring-data-cassandra"
+  }, {
+    "id": "data-couchbase",
+    "name": "Couchbase",
+    "group": "NoSQL",
+    "description": "Couchbase NoSQL database, including spring-data-couchbase"
+  }, {
+    "id": "data-neo4j",
+    "name": "Neo4j",
+    "group": "NoSQL",
+    "description": "Neo4j NoSQL graph database, including spring-data-neo4j"
+  }, {
+    "id": "data-redis",
+    "name": "Redis",
+    "group": "NoSQL",
+    "description": "REDIS key-value data store, including spring-redis",
+    "keywords": "redis"
+  }, {
+    "id": "data-gemfire",
+    "name": "Gemfire",
+    "group": "NoSQL",
+    "description": "GemFire distributed data store including spring-data-gemfire"
+  }, {
+    "id": "data-solr",
+    "name": "Solr",
+    "group": "NoSQL",
+    "description": "Apache Solr search platform, including spring-data-solr"
+  }, {
+    "id": "data-elasticsearch",
+    "name": "Elasticsearch",
+    "group": "NoSQL",
+    "description": "Elasticsearch search and analytics engine including spring-data-elasticsearch",
+    "weight": 10
+  }, {
+    "id": "cloud-connectors",
+    "name": "Cloud Connectors",
+    "group": "Cloud Core",
+    "description": "Simplifies connecting to services in cloud platforms, including spring-cloud-connector and spring-cloud-cloudfoundry-connector"
+  }, {
+    "id": "cloud-starter",
+    "name": "Cloud Bootstrap",
+    "group": "Cloud Core",
+    "description": "spring-cloud-context (e.g. Bootstrap context and @RefreshScope)",
+    "weight": 100
+  }, {
+    "id": "cloud-security",
+    "name": "Cloud Security",
+    "group": "Cloud Core",
+    "description": "Secure load balancing and routing with spring-cloud-security"
+  }, {
+    "id": "cloud-oauth2",
+    "name": "Cloud OAuth2",
+    "group": "Cloud Core",
+    "description": "OAuth2 and distributed application patterns with spring-cloud-security"
+  }, {
+    "id": "cloud-task",
+    "name": "Cloud Task",
+    "group": "Cloud Core",
+    "description": "Task result tracking along with integration with batch and streams"
+  }, {
+    "id": "cloud-config-client",
+    "name": "Config Client",
+    "group": "Cloud Config",
+    "description": "spring-cloud-config Client",
+    "weight": 100
+  }, {
+    "id": "cloud-config-server",
+    "name": "Config Server",
+    "group": "Cloud Config",
+    "description": "Central management for configuration via a git or svn backend"
+  }, {
+    "id": "cloud-starter-zookeeper-config",
+    "name": "Zookeeper Configuration",
+    "group": "Cloud Config",
+    "description": "Configuration management with Zookeeper and spring-cloud-zookeeper-config"
+  }, {
+    "id": "cloud-starter-consul-config",
+    "name": "Consul Configuration",
+    "group": "Cloud Config",
+    "description": "Configuration management with Hashicorp Consul"
+  }, {
+    "id": "cloud-eureka",
+    "name": "Eureka Discovery",
+    "group": "Cloud Discovery",
+    "description": "Service discovery using spring-cloud-netflix and Eureka",
+    "weight": 100
+  }, {
+    "id": "cloud-eureka-server",
+    "name": "Eureka Server",
+    "group": "Cloud Discovery",
+    "description": "spring-cloud-netflix Eureka Server"
+  }, {
+    "id": "cloud-starter-zookeeper-discovery",
+    "name": "Zookeeper Discovery",
+    "group": "Cloud Discovery",
+    "description": "Service discovery with Zookeeper and spring-cloud-zookeeper-discovery"
+  }, {
+    "id": "cloud-cloudfoundry-discovery",
+    "name": "Cloud Foundry Discovery",
+    "group": "Cloud Discovery",
+    "description": "Service discovery with Cloud Foundry"
+  }, {
+    "id": "cloud-starter-consul-discovery",
+    "name": "Consul Discovery",
+    "group": "Cloud Discovery",
+    "description": "Service discovery with Hashicorp Consul"
+  }, {
+    "id": "cloud-zuul",
+    "name": "Zuul",
+    "group": "Cloud Routing",
+    "description": "Intelligent and programmable routing with spring-cloud-netflix Zuul"
+  }, {
+    "id": "cloud-ribbon",
+    "name": "Ribbon",
+    "group": "Cloud Routing",
+    "description": "Client side load balancing with spring-cloud-netflix and Ribbon"
+  }, {
+    "id": "cloud-feign",
+    "name": "Feign",
+    "group": "Cloud Routing",
+    "description": "Declarative REST clients with spring-cloud-netflix Feign"
+  }, {
+    "id": "cloud-hystrix",
+    "name": "Hystrix",
+    "group": "Cloud Circuit Breaker",
+    "description": "Circuit breaker with spring-cloud-netflix Hystrix"
+  }, {
+    "id": "cloud-hystrix-dashboard",
+    "name": "Hystrix Dashboard",
+    "group": "Cloud Circuit Breaker",
+    "description": "Circuit breaker dashboard with spring-cloud-netflix Hystrix"
+  }, {
+    "id": "cloud-turbine",
+    "name": "Turbine",
+    "group": "Cloud Circuit Breaker",
+    "description": "Circuit breaker metric aggregation using spring-cloud-netflix with Turbine and server-sent events"
+  }, {
+    "id": "cloud-turbine-stream",
+    "name": "Turbine Stream",
+    "group": "Cloud Circuit Breaker",
+    "description": "Circuit breaker metric aggregation using spring-cloud-netflix with Turbine and Spring Cloud Stream (choose a specific Stream binder implementation to complement this)",
+    "weight": -1
+  }, {
+    "id": "cloud-starter-sleuth",
+    "name": "Sleuth",
+    "group": "Cloud Tracing",
+    "description": "Distributed tracing via logs with spring-cloud-sleuth"
+  }, {
+    "id": "cloud-starter-zipkin",
+    "name": "Zipkin Client",
+    "group": "Cloud Tracing",
+    "description": "Distributed tracing with an existing Zipkin installation and spring-cloud-sleuth-zipkin. Alternatively, consider Sleuth Stream."
+  }, {
+    "id": "cloud-sleuth-stream",
+    "name": "Sleuth Stream",
+    "group": "Cloud Tracing",
+    "description": "Marshals Spring Cloud Sleuth Spans over a Spring Cloud Stream binder"
+  }, {
+    "id": "cloud-sleuth-zipkin-stream",
+    "name": "Zipkin Stream",
+    "group": "Cloud Tracing",
+    "description": "Consumes span data in messages from Spring Cloud Sleuth Stream and writes them to a Zipkin store"
+  }, {
+    "id": "zipkin-ui",
+    "name": "Zipkin UI",
+    "group": "Cloud Tracing",
+    "description": "add the Zipkin UI module to the Zipkin server to get a Zipkin service that accepts Spans and provides visualization"
+  }, {
+    "id": "zipkin-server",
+    "name": "Zipkin Server",
+    "group": "Cloud Tracing",
+    "description": "Consumes span data over HTTP and writes them to a span store"
+  }, {
+    "id": "cloud-bus-amqp",
+    "name": "Cloud Bus AMQP",
+    "group": "Cloud Messaging",
+    "description": "A simple control bus with AMQP and spring-cloud-bus-amqp"
+  }, {
+    "id": "cloud-bus-kafka",
+    "name": "Cloud Bus Kafka",
+    "group": "Cloud Messaging",
+    "description": "A simple control bus with Kafka and spring-cloud-bus"
+  }, {
+    "id": "cloud-stream-binder-rabbit",
+    "name": "Stream Rabbit",
+    "group": "Cloud Messaging",
+    "description": "Messaging microservices with RabbitMQ"
+  }, {
+    "id": "cloud-stream-binder-kafka",
+    "name": "Stream Kafka",
+    "group": "Cloud Messaging",
+    "description": "Messaging microservices with Kafka"
+  }, {
+    "id": "cloud-aws",
+    "name": "AWS Core",
+    "group": "Cloud AWS",
+    "description": "AWS native services from spring-cloud-aws"
+  }, {
+    "id": "cloud-aws-jdbc",
+    "name": "AWS JDBC",
+    "group": "Cloud AWS",
+    "description": "Relational databases on AWS with RDS and spring-cloud-aws-jdbc"
+  }, {
+    "id": "cloud-aws-messaging",
+    "name": "AWS Messaging",
+    "group": "Cloud AWS",
+    "description": "Messaging on AWS with SQS and spring-cloud-aws-messaging"
+  }, {
+    "id": "cloud-dataflow-server-local",
+    "name": "Local Data Flow Server",
+    "group": "Cloud Data Flow",
+    "description": "Local Data Flow Server implementation"
+  }, {
+    "id": "cloud-dataflow-shell",
+    "name": "Data Flow Shell",
+    "group": "Cloud Data Flow",
+    "description": "Data Flow Shell"
+  }, {
+    "id": "cloud-cluster-redis",
+    "name": "Cluster Redis",
+    "group": "Cloud Cluster",
+    "description": "Leadership election and global state with Redis and spring-cloud-cluster-redis"
+  }, {
+    "id": "cloud-cluster-zookeeper",
+    "name": "Cluster Zookeeper",
+    "group": "Cloud Cluster",
+    "description": "Leadership election and global state with Zookeeper and spring-cloud-cluster-zookeeper"
+  }, {
+    "id": "cloud-cluster-hazelcast",
+    "name": "Cluster Hazelcast",
+    "group": "Cloud Cluster",
+    "description": "Leadership election and global state with Hazelcast and spring-cloud-cluster-hazelcast"
+  }, {
+    "id": "cloud-cluster-etcd",
+    "name": "Cluster Etcd",
+    "group": "Cloud Cluster",
+    "description": "Leadership election and global state with Etcd and spring-cloud-cluster-etcd"
+  }, {
+    "id": "cloud-contract-verifier",
+    "name": "Cloud Contract Verifier",
+    "group": "Cloud Contract",
+    "description": "Test dependencies required for autogenerated tests"
+  }, {
+    "id": "cloud-contract-stub-runner",
+    "name": "Cloud Contract Stub Runner",
+    "group": "Cloud Contract",
+    "description": "Stub Runner for HTTP/Messaging based communication"
+  }, {
+    "id": "cloud-contract-wiremock",
+    "name": "Cloud Contract WireMock",
+    "group": "Cloud Contract",
+    "description": "Test dependencies required for the WireMock HTTP server"
+  }, {
+    "id": "social-facebook",
+    "name": "Facebook",
+    "group": "Social",
+    "description": "spring-social-facebook",
+    "weight": 25
+  }, {
+    "id": "social-linkedin",
+    "name": "LinkedIn",
+    "group": "Social",
+    "description": "spring-social-linkedin"
+  }, {
+    "id": "social-twitter",
+    "name": "Twitter",
+    "group": "Social",
+    "description": "spring-social-twitter"
+  }, {
+    "id": "batch",
+    "name": "Batch",
+    "group": "I/O",
+    "description": "Spring Batch including HSQLDB database"
+  }, {
+    "id": "integration",
+    "name": "Integration",
+    "group": "I/O",
+    "description": "Common spring-integration modules"
+  }, {
+    "id": "activiti-basic",
+    "name": "Activiti",
+    "group": "I/O",
+    "description": "Activiti BPMN workflow engine"
+  }, {
+    "id": "camel",
+    "name": "Apache Camel",
+    "group": "I/O",
+    "description": "Integration using Apache Camel"
+  }, {
+    "id": "activemq",
+    "name": "JMS (ActiveMQ)",
+    "group": "I/O",
+    "description": "Java Message Service API via Apache ActiveMQ"
+  }, {
+    "id": "artemis",
+    "name": "JMS (Artemis)",
+    "group": "I/O",
+    "description": "Java Message Service API via Apache Artemis"
+  }, {
+    "id": "amqp",
+    "name": "AMQP",
+    "group": "I/O",
+    "description": "Advanced Message Queuing Protocol via spring-rabbit"
+  }, {
+    "id": "kafka",
+    "name": "Kafka",
+    "group": "I/O",
+    "description": "Kafka messaging support using Spring Kafka",
+    "weight": 100
+  }, {
+    "id": "mail",
+    "name": "Mail",
+    "group": "I/O",
+    "description": "javax.mail"
+  }, {
+    "id": "data-ldap",
+    "name": "LDAP",
+    "group": "I/O",
+    "description": "LDAP support, including spring-data-ldap"
+  }, {
+    "id": "actuator",
+    "name": "Actuator",
+    "group": "Ops",
+    "description": "Production ready features to help you monitor and manage your application"
+  }, {
+    "id": "actuator-docs",
+    "name": "Actuator Docs",
+    "group": "Ops",
+    "description": "API documentation for the Actuator endpoints"
+  }]
+}

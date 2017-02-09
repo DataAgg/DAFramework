@@ -1,0 +1,20 @@
+spring:
+  data:
+    mongodb:
+      database: dataagg
+      port: 0
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: "jdbc:mysql://localhost:3307/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+    username: dataagg
+    password: EdIyNje2GsRyzPDXQfp1
+mybatis:
+  type-aliases-package: com.dataagg.auth.mapper
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+logging:
+  level:
+    root: WARN

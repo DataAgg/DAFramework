@@ -1,0 +1,52 @@
+WorkDir: ..
+props:
+  spring-cloud: Camden.SR4
+group: com.dataagg
+project: DAFramework
+version: 0.1
+description: DAFramework
+
+subProjects:
+  config:
+    description: config server
+    ports: {config-server: 8888}
+    components: [config-server, starter-security]
+  registry:
+    description: Service registry
+    ports: {eureka-server: 8761}
+    components: [starter-config, 'test:starter-test', eureka-server]
+  gateway:
+    description: api gateway
+    ports: [4000]
+    components: [starter-config, 'test:starter-test', eureka-client, starter-zuul]
+  auth-service:
+    description: auth service
+    ports: [5000]
+    components:
+      - starter-config
+      - eureka-client
+      - starter-web
+      - starter-security
+      - security-oauth2
+      - mybatis-spring-boot-starter
+      - mysql
+      - druid
+      - mybatis-plus
+      - 'test:starter-test'
+  account-service:
+    description: account service
+    ports: [6000]
+    components:
+      - starter-config
+      - eureka-client
+      - starter-web
+      - starter-security
+      - security-oauth2
+      - starter-feign
+      - starter-bus-amqp
+      - cloud-security
+      - mybatis-spring-boot-starter
+      - mysql
+      - druid
+      - mybatis-plus
+      - 'test:starter-test'
