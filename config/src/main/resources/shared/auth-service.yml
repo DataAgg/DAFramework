@@ -5,7 +5,6 @@ spring:
     username: dataagg
     password: EdIyNje2GsRyzPDXQfp1
 mybatis:
-  type-aliases-package: com.dataaggnfig-locations: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
 
 server:
