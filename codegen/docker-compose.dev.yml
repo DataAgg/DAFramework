@@ -18,6 +18,7 @@ services:
       - ../registry/build/libs/:/app/
     ports:
       - 8761:8761
+    depends_on: [config]
     command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
 
   gateway:
@@ -28,6 +29,7 @@ services:
       - ../gateway/build/libs/:/app/
     ports:
       - 4000:4000
+    depends_on: [registry]
     command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
 
   auth-service:
@@ -39,6 +41,7 @@ services:
       - ../auth-service/build/libs/:/app/
     ports:
       - 5000:5000
+    depends_on: [gateway]
     command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
 
   account-service:
@@ -50,6 +53,7 @@ services:
       - ../account-service/build/libs/:/app/
     ports:
       - 6000:6000
+    depends_on: [gateway]
     command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
 
   # statistics-service:
