@@ -11,7 +11,6 @@ description = """account service"""
 
 
 dependencies {
-	compile 'org.springframework.cloud:spring-cloud-starter-config'
 	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-security'

@@ -8,23 +8,12 @@ version: 0.1
 plugins: [eclipse, idea, 'com.github.ben-manes.versions:0.13.0']
 description: DAFramework
 subProjects:
-  config:
-    version: 0.1
-    archiveName: app.jar
-    description: config server
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
-    deps:
-      - compile 'org.springframework.cloud:spring-cloud-config-server'
-      - compile 'org.springframework.boot:spring-boot-starter-security'
-    dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
   registry:
     version: 0.1
     archiveName: app.jar
     description: Service registry
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
-      - compile 'org.springframework.cloud:spring-cloud-starter-config'
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
     dependencyManagement:
@@ -35,7 +24,6 @@ subProjects:
     description: api gateway
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
-      - compile 'org.springframework.cloud:spring-cloud-starter-config'
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
       - compile 'org.springframework.cloud:spring-cloud-starter-zuul'
@@ -47,7 +35,6 @@ subProjects:
     description: auth service
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
-      - compile 'org.springframework.cloud:spring-cloud-starter-config'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
       - compile 'org.springframework.boot:spring-boot-starter-web'
       - compile 'org.springframework.boot:spring-boot-starter-security'
@@ -65,7 +52,6 @@ subProjects:
     description: account service
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
-      - compile 'org.springframework.cloud:spring-cloud-starter-config'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
       - compile 'org.springframework.boot:spring-boot-starter-web'
       - compile 'org.springframework.boot:spring-boot-starter-security'

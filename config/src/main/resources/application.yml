@@ -12,7 +12,7 @@ server:
 
 security:
   user:
-    password: ${CONFIG_SERVICE_PASSWORD}
+    password: YFzCAfocMInyJ5YaO805
 
 logging:
   level:

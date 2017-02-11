@@ -11,7 +11,8 @@ description = """Service registry"""
 
 
 dependencies {
-	compile 'org.springframework.cloud:spring-cloud-starter-config'
+	compile 'org.springframework.cloud:spring-cloud-commons'
+	compile 'org.springframework.cloud:spring-cloud-context'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
 }
