@@ -43,15 +43,3 @@ zuul:
         serviceId: http://account-service:6000
         stripPrefix: false
         sensitiveHeaders:
-
-    statistics-service:
-        path: /statistics/**
-        serviceId: statistics-service
-        stripPrefix: false
-        sensitiveHeaders:
-
-    notification-service:
-        path: /notifications/**
-        serviceId: notification-service
-        stripPrefix: false
-        sensitiveHeaders:

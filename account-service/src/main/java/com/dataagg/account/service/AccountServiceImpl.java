@@ -58,8 +58,7 @@ public class AccountServiceImpl implements AccountService {
 		account.setLastSeen(new Date());
 		account.setSaving(saving);
 
-		accountMapper.insert(account);
-
+		//accountMapper.insert(account);
 		log.info("new account has been created: " + account.getName());
 
 		return account;

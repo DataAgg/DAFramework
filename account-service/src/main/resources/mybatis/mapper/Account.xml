@@ -13,12 +13,6 @@
 		id, user_name, password
 	</sql>
 
-	<select id="getAll" resultMap="BaseResultMap">
-		SELECT
-		<include refid="Base_Column_List"/>
-		FROM sys_users
-	</select>
-
 	<select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
 		SELECT
 		<include refid="Base_Column_List"/>
@@ -26,35 +20,10 @@
 		WHERE id = #{id}
 	</select>
 
-	<select id="getByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+	<select id="findByName" parameterType="java.lang.String" resultMap="BaseResultMap">
 		SELECT
 		<include refid="Base_Column_List"/>
 		FROM sys_users
 		WHERE user_name = #{username}
 	</select>
-
-	<insert id="insert" parameterType="com.dataagg.account.domain.Account">
-		INSERT INTO
-		sys_users
-		(user_name,password)
-		VALUES
-		(#{user_name}, #{password})
-	</insert>
-
-	<update id="update" parameterType="com.dataagg.account.domain.Account">
-		UPDATE
-		sys_users
-		SET
-		<if test="user_name != null">user_name = #{user_name},</if>
-		<if test="password != null">password = #{password},</if>
-		WHERE
-		id = #{id}
-	</update>
-
-	<delete id="delete" parameterType="java.lang.Long">
-		DELETE FROM
-		sys_users
-		WHERE
-		id =#{id}
-	</delete>
 </mapper>

@@ -32,7 +32,7 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableConfigurationProperties
 @Configuration
-@MapperScan("com.dataagg")
+@MapperScan("com.dataagg.account.mapper")
 public class AccountApplication extends ResourceServerConfigurerAdapter {
 
 	@Autowired

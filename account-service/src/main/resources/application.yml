@@ -7,7 +7,7 @@ spring:
     username: dataagg
     password: EdIyNje2GsRyzPDXQfp1
 mybatis:
-  mapper-locations: classpath:mybatis/mapper/*.xml
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
 
 logging:
   level:

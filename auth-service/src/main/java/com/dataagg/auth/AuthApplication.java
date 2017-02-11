@@ -30,7 +30,7 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @EnableResourceServer
 @EnableDiscoveryClient
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@MapperScan("com.dataagg")
+@MapperScan("com.dataagg.auth.mapper")
 public class AuthApplication {
 
 	public static void main(String[] args) {
