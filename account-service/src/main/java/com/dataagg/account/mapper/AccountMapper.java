@@ -1,5 +1,6 @@
-package com.dataagg.account.repository;
+package com.dataagg.account.mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.dataagg.account.domain.Account;
 
 import java.util.List;
@@ -7,11 +8,8 @@ import java.util.List;
 /**
  * Created by watano on 2017/2/9.
  */
-public interface AccountMapper {
+public interface AccountMapper extends BaseMapper<Account> {
 	List<Account> getAll();
 	Account getOne(Long id);
 	Account findByName(String username);
-	void insert(Account user);
-	void save(Account user);
-	void delete(Long id);
 }

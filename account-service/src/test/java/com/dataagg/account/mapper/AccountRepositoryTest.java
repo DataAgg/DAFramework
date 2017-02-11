@@ -1,4 +1,4 @@
-package com.dataagg.account.repository;
+package com.dataagg.account.mapper;
 
 import com.dataagg.account.AccountApplication;
 import com.dataagg.account.domain.Account;
@@ -29,7 +29,7 @@ public class AccountRepositoryTest {
 	public void shouldFindAccountByName() {
 
 		Account stub = getStubAccount();
-		repository.save(stub);
+		repository.update(stub, null);
 
 		Account found = repository.findByName(stub.getName());
 		assertEquals(stub.getLastSeen(), found.getLastSeen());

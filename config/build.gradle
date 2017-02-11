@@ -2,7 +2,7 @@ plugins {
 		id 'java'
 		id 'eclipse'
 		id 'idea'
-		id 'org.springframework.boot' version '1.5.1.RELEASE'
+		id 'org.springframework.boot' version '1.4.4.RELEASE'
 }
 
 group = 'com.dataagg'
@@ -16,7 +16,7 @@ dependencies {
 }
 
 dependencyManagement {
-	imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+	imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
 }
 
 

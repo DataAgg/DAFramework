@@ -6,9 +6,9 @@ services:
     image: java:8-jre
     volumes:
       - ../config/build/libs/:/app/
-    ports:
-      - 8888:8888
-    command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
+    ports: [ '8888:8888']
+    expose: [8888]
+    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
 
   registry:
     environment:
@@ -16,21 +16,11 @@ services:
     image: java:8-jre
     volumes:
       - ../registry/build/libs/:/app/
-    ports:
-      - 8761:8761
+    ports: ['8761:8761']
+    expose: [8761]
     depends_on: [config]
-    command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
-
-  gateway:
-    environment:
-      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-    image: java:8-jre
-    volumes:
-      - ../gateway/build/libs/:/app/
-    ports:
-      - 4000:4000
-    depends_on: [registry]
-    command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
+    links: [config]
+    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
 
   auth-service:
     environment:
@@ -39,10 +29,23 @@ services:
     image: java:8-jre
     volumes:
       - ../auth-service/build/libs/:/app/
-    ports:
-      - 5000:5000
-    depends_on: [gateway]
-    command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
+    ports: ['5000:5000']
+    expose: [5000]
+    depends_on: [registry]
+    links: [config, registry]
+    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
+
+  gateway:
+    environment:
+      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+    image: java:8-jre
+    volumes:
+      - ../gateway/build/libs/:/app/
+    ports: ['4000:4000']
+    expose: [80]
+    depends_on: [auth-service]
+    links: [config, registry]
+    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
 
   account-service:
     environment:
@@ -51,10 +54,11 @@ services:
     image: java:8-jre
     volumes:
       - ../account-service/build/libs/:/app/
-    ports:
-      - 6000:6000
+    ports: ['6000:6000']
+    expose: [6000]
     depends_on: [gateway]
-    command: ["java", "-Xmx200m", "-jar", "/app/app.jar"]
+    links: [config, registry, gateway]
+    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
 
   # statistics-service:
   #   environment:

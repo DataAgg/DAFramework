@@ -1,6 +1,6 @@
 WorkDir: ..
 props:
-  spring-cloud: Camden.SR4
+  spring-cloud: Camden.SR5
 group: com.dataagg
 project: DAFramework
 version: 0.1

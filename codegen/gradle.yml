@@ -12,40 +12,40 @@ subProjects:
     version: 0.1
     archiveName: app.jar
     description: config server
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.1.RELEASE']
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
       - compile 'org.springframework.cloud:spring-cloud-config-server'
       - compile 'org.springframework.boot:spring-boot-starter-security'
     dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
   registry:
     version: 0.1
     archiveName: app.jar
     description: Service registry
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.1.RELEASE']
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter-config'
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
     dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
   gateway:
     version: 0.1
     archiveName: app.jar
     description: api gateway
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.1.RELEASE']
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter-config'
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
       - compile 'org.springframework.cloud:spring-cloud-starter-zuul'
     dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
   auth-service:
     version: 0.1
     archiveName: app.jar
     description: auth service
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.1.RELEASE']
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter-config'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
@@ -58,12 +58,12 @@ subProjects:
       - compile 'com.baomidou:mybatis-plus:2.0.1'
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
     dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
   account-service:
     version: 0.1
     archiveName: app.jar
     description: account service
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.1.RELEASE']
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
       - compile 'org.springframework.cloud:spring-cloud-starter-config'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
@@ -79,4 +79,4 @@ subProjects:
       - compile 'com.baomidou:mybatis-plus:2.0.1'
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
     dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR4' }
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }

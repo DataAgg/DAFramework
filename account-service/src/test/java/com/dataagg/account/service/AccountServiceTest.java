@@ -1,14 +1,13 @@
 package com.dataagg.account.service;
 
 import com.dataagg.account.client.AuthServiceClient;
-import com.dataagg.account.client.StatisticsServiceClient;
 import com.dataagg.account.domain.Account;
 import com.dataagg.account.domain.Currency;
 import com.dataagg.account.domain.Item;
 import com.dataagg.account.domain.Saving;
 import com.dataagg.account.domain.TimePeriod;
 import com.dataagg.account.domain.User;
-import com.dataagg.account.repository.AccountMapper;
+import com.dataagg.account.mapper.AccountMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -28,9 +27,6 @@ public class AccountServiceTest {
 
 	@InjectMocks
 	private AccountServiceImpl accountService;
-
-	@Mock
-	private StatisticsServiceClient statisticsClient;
 
 	@Mock
 	private AuthServiceClient authClient;
@@ -77,7 +73,7 @@ public class AccountServiceTest {
 		assertNotNull(account.getLastSeen());
 
 		verify(authClient, times(1)).createUser(user);
-		verify(repository, times(1)).save(account);
+		verify(repository, times(1)).update(account, null);
 	}
 
 	@Test
@@ -140,8 +136,8 @@ public class AccountServiceTest {
 		assertEquals(update.getIncomes().get(0).getPeriod(), account.getIncomes().get(0).getPeriod());
 		assertEquals(update.getIncomes().get(0).getIcon(), account.getIncomes().get(0).getIcon());
 		
-		verify(repository, times(1)).save(account);
-		verify(statisticsClient, times(1)).updateStatistics("test", account);
+		verify(repository, times(1)).update(account, null);
+//		verify(statisticsClient, times(1)).updateStatistics("test", account);
 	}
 
 	@Test(expected = IllegalArgumentException.class)

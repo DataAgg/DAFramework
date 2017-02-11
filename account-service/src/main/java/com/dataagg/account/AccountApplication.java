@@ -2,6 +2,7 @@ package com.dataagg.account;
 
 import com.dataagg.account.service.security.CustomUserInfoTokenServices;
 import feign.RequestInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,6 +32,7 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableConfigurationProperties
 @Configuration
+@MapperScan("com.dataagg")
 public class AccountApplication extends ResourceServerConfigurerAdapter {
 
 	@Autowired
