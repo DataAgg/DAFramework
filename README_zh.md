@@ -1,6 +1,8 @@
 # DAFramework --  云南数聚基础框架
 DAFramework是云南数聚科技开源的微服务基础框架, 基于Spring-boot, Spring-security, Spring-cloud， Spring-data， Mybatis和Docker构建. 这是一个Spring-cloud的脚手架项目, 提供一些基础服务, 帮助更多的开发人员更快速地构建他们的项目. DAFramework源于[PiggyMetrics](https://github.com/sqshq/PiggyMetrics)项目.
 
+![基础组件](/images/componets.png "基础组件")
+
 ## 为何选择DAFramework
 ---
 + 基于Spring-boot, Spring-MVC, Spring-security和Spring-cloud构建, 减少用户的学习成本;
@@ -72,3 +74,8 @@ npm run lint
 ```shell
 npm run build
 ```
+
+## 关于我们
++ [官网](https://dataagg.github.io/)
++ [团队博客](https://dataagg.github.io/)
++ [文档](https://watano.gitbooks.io/daframework/content/)
