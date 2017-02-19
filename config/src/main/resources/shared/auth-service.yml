@@ -8,5 +8,5 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
 
 server:
-  context-path: /uaa
+  context-path: /security
   port: 5000

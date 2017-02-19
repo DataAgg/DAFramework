@@ -30,7 +30,7 @@ subProjects:
       - security-oauth2
       - mybatis-spring-boot-starter
       - mysql
-      - druid
+#      - druid
       - mybatis-plus
       - 'test:starter-test'
   payment:
@@ -42,10 +42,10 @@ subProjects:
       - starter-security
       - security-oauth2
       - starter-feign
-      - starter-bus-amqp
+#      - starter-bus-amqp
       - cloud-security
       - mybatis-spring-boot-starter
       - mysql
-      - druid
+#      - druid
       - mybatis-plus
       - 'test:starter-test'

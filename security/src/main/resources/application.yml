@@ -10,7 +10,7 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*Mapper.xml
 
 server:
-  context-path: /uaa
+  context-path: /security
   port: 5000
 
 logging:
@@ -27,4 +27,4 @@ eureka:
 security:
   oauth2:
     resource:
-      user-info-uri: http://security:5000/uaa/users/current
+      user-info-uri: http://security:5000/security/users/current

@@ -21,7 +21,7 @@ eureka:
 security:
   oauth2:
     resource:
-      user-info-uri: http://security:5000/uaa/users/current
+      user-info-uri: http://security:5000/security/users/current
 
 spring:
   rabbitmq:
