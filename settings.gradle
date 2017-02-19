@@ -1,1 +1,1 @@
-			include ':registry', ':gateway', ':auth-service', ':account-service'
+			include ':service-center', ':apigateway', ':security', ':payment'

@@ -8,20 +8,20 @@ version: 0.1
 plugins: [eclipse, idea, 'com.github.ben-manes.versions:0.13.0']
 description: DAFramework
 subProjects:
-  registry:
+  service-center:
     version: 0.1
     archiveName: app.jar
-    description: Service registry
+    description: Service serviceCenter and service discovery
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
     dependencyManagement:
       - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
-  gateway:
+  apigateway:
     version: 0.1
     archiveName: app.jar
-    description: api gateway
+    description: api apigateway
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
@@ -29,7 +29,7 @@ subProjects:
       - compile 'org.springframework.cloud:spring-cloud-starter-zuul'
     dependencyManagement:
       - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
-  auth-service:
+  security:
     version: 0.1
     archiveName: app.jar
     description: auth service
@@ -46,10 +46,10 @@ subProjects:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
     dependencyManagement:
       - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
-  account-service:
+  payment:
     version: 0.1
     archiveName: app.jar
-    description: account service
+    description: payment service
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'

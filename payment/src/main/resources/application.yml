@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: payment
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: "jdbc:mysql://192.168.31.226:3307/dataagg?useUnicode = true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+    username: dataagg
+    password: EdIyNje2GsRyzPDXQfp1
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+
+logging:
+  level:
+    root: WARN
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://service-center:8761/eureka/
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://security:5000/uaa/users/current
+    client:
+      clientId: payment
+      clientSecret: ${ACCOUNT_SERVICE_PASSWORD}
+      accessTokenUri: http://security:5000/uaa/oauth/token
+      grant-type: client_credentials
+      scope: server
+
+server:
+  context-path: /payment
+  port: 6000
+

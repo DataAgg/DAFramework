@@ -11,29 +11,30 @@ subProjects:
 #    description: config server
 #    ports: {config-server: 8888}
 #    components: [config-server, starter-security]
-  registry:
-    description: Service registry
+  service-center:
+    description: Service serviceCenter and service discovery
     ports: {eureka-server: 8761}
     components: ['test:starter-test', eureka-server]
-  gateway:
-    description: api gateway
+  apigateway:
+    description: api apigateway
     ports: [4000]
     components: ['test:starter-test', eureka-client, starter-zuul]
-  auth-service:
+  security:
     description: auth service
     ports: [5000]
     components:
       - eureka-client
       - starter-web
       - starter-security
+      - starter-feign
       - security-oauth2
       - mybatis-spring-boot-starter
       - mysql
       - druid
       - mybatis-plus
       - 'test:starter-test'
-  account-service:
-    description: account service
+  payment:
+    description: payment service
     ports: [6000]
     components:
       - eureka-client

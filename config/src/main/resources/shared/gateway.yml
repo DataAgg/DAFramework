@@ -17,27 +17,15 @@ zuul:
     socket-timeout-millis: 20000
 
   routes:
-    auth-service:
+    security:
         path: /uaa/**
-        url: http://auth-service:5000
+        url: http://security:5000
         stripPrefix: false
         sensitiveHeaders:
 
-    account-service:
-        path: /accounts/**
-        serviceId: account-service
-        stripPrefix: false
-        sensitiveHeaders:
-
-    statistics-service:
-        path: /statistics/**
-        serviceId: statistics-service
-        stripPrefix: false
-        sensitiveHeaders:
-
-    notification-service:
-        path: /notifications/**
-        serviceId: notification-service
+    payment:
+        path: /payment/**
+        serviceId: payment
         stripPrefix: false
         sensitiveHeaders:
 

@@ -1,9 +1,9 @@
 security:
   oauth2:
     client:
-      clientId: account-service
+      clientId: payment
       clientSecret: ${ACCOUNT_SERVICE_PASSWORD}
-      accessTokenUri: http://auth-service:5000/uaa/oauth/token
+      accessTokenUri: http://security:5000/uaa/oauth/token
       grant-type: client_credentials
       scope: server
 
@@ -17,5 +17,5 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
 
 server:
-  context-path: /accounts
+  context-path: /payment
   port: 6000
