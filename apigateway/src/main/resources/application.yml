@@ -38,8 +38,8 @@ zuul:
         stripPrefix: false
         sensitiveHeaders:
 
-    payment:
-        path: /payment/**
-        serviceId: http://payment:6000
+    account:
+        path: /account/**
+        serviceId: http://account:6000
         stripPrefix: false
         sensitiveHeaders:

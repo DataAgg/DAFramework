@@ -1,1 +1,1 @@
-			include ':service-center', ':apigateway', ':security', ':payment'
+			include ':service-center', ':apigateway', ':security', ':account'

@@ -12,7 +12,7 @@ services:
 
   # mongodb:
   #   environment:
-  #     INIT_DUMP: payment-dump.js
+  #     INIT_DUMP: account-dump.js
   #     MONGODB_PASSWORD: YFzCAfocMInyJ5YaO805
   #   build:
   #     context: ./mongodb

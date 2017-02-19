@@ -46,10 +46,10 @@ subProjects:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
     dependencyManagement:
       - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
-  payment:
+  account:
     version: 0.1
     archiveName: app.jar
-    description: payment service
+    description: account service
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'

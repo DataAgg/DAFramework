@@ -93,7 +93,7 @@ public class SecurityApplication {
 					.authorizedGrantTypes("refresh_token", "password")
 					.scopes("ui")
 			.and()
-					.withClient("payment")
+					.withClient("account")
 					.secret(env.getProperty("ACCOUNT_SERVICE_PASSWORD"))
 					.authorizedGrantTypes("client_credentials", "refresh_token")
 					.scopes("server");

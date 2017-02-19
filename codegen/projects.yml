@@ -33,8 +33,8 @@ subProjects:
 #      - druid
       - mybatis-plus
       - 'test:starter-test'
-  payment:
-    description: payment service
+  account:
+    description: account service
     ports: [6000]
     components:
       - eureka-client

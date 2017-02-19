@@ -19,7 +19,6 @@ public class UserMapperTest {
 
 	@Test
 	public void shouldSaveAndFindUserByName() {
-
 		User user = new User();
 		user.setUsername("name"+ System.currentTimeMillis());
 		user.setPassword("password");

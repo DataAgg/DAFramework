@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @TableName("sys_users")
@@ -20,6 +21,9 @@ public class User extends Model<User> implements UserDetails {
 
 	private String password;
 
+	@TableField(exist=false)
+	private List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+
 	@Override
 	public String getPassword() {
 		return password;
@@ -30,9 +34,13 @@ public class User extends Model<User> implements UserDetails {
 		return username;
 	}
 
+	public void setGrantedAuthorities(List<GrantedAuthority> grantedAuthorities) {
+		this.grantedAuthorities = grantedAuthorities;
+	}
+
 	@Override
 	public List<GrantedAuthority> getAuthorities() {
-		return null;
+		return grantedAuthorities;
 	}
 
 	public Long getId() {

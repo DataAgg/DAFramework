@@ -1,0 +1,47 @@
+plugins {
+		id 'java'
+		id 'eclipse'
+		id 'idea'
+		id 'org.springframework.boot' version '1.4.4.RELEASE'
+}
+
+group = 'com.dataagg'
+version = '0.1'
+description = """account service"""
+
+
+dependencies {
+	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.boot:spring-boot-starter-security'
+	compile 'org.springframework.security.oauth:spring-security-oauth2'
+	compile 'org.springframework.cloud:spring-cloud-starter-feign'
+	compile 'org.springframework.cloud:spring-cloud-security:1.1.3.RELEASE'
+	compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.2.0'
+	compile 'mysql:mysql-connector-java:5.1.9'
+	compile 'com.baomidou:mybatis-plus:2.0.1'
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
+}
+
+
+jar {
+	baseName = 'account'
+	version = '0.1'
+	archiveName = 'app.jar'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	options.encoding = "UTF-8"
+}
+configurations {
+	published
+}
