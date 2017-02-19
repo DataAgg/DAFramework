@@ -14,8 +14,9 @@ subProjects:
     description: Service serviceCenter and service discovery
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
-      - testCompile 'org.springframework.boot:spring-boot-starter-test'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
+      - compile 'org.springframework.cloud:spring-cloud-starter-feign'
+      - testCompile 'org.springframework.boot:spring-boot-starter-test'
     dependencyManagement:
       - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
   apigateway:
@@ -24,9 +25,9 @@ subProjects:
     description: api apigateway
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.4.4.RELEASE']
     deps:
-      - testCompile 'org.springframework.boot:spring-boot-starter-test'
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
       - compile 'org.springframework.cloud:spring-cloud-starter-zuul'
+      - testCompile 'org.springframework.boot:spring-boot-starter-test'
     dependencyManagement:
       - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
   security:

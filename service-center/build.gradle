@@ -11,8 +11,9 @@ description = """Service serviceCenter and service discovery"""
 
 
 dependencies {
-	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
+	compile 'org.springframework.cloud:spring-cloud-starter-feign'
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {

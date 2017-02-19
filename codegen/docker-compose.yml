@@ -10,17 +10,17 @@ services:
 #    expose: [8888]
 #    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
 
-#  service-center:
-#    environment:
-#      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-#    image: java:8-jre
-#    volumes:
-#      - ../service-center/build/libs/:/app/
-#    ports: ['8761:8761']
-#    expose: [8761]
-##    depends_on: [config]
-##    links: [config]
-#    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
+  service-center:
+    environment:
+      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+    image: java:8-jre
+    volumes:
+      - ../service-center/build/libs/:/app/
+    ports: ['8761:8761']
+    expose: [8761]
+#    depends_on: [config]
+#    links: [config]
+    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
 
   security:
     environment:

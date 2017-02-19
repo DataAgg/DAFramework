@@ -14,11 +14,17 @@ subProjects:
   service-center:
     description: Service serviceCenter and service discovery
     ports: {eureka-server: 8761}
-    components: ['test:starter-test', eureka-server]
+    components:
+      - eureka-server
+      - starter-feign
+      - 'test:starter-test'
   apigateway:
     description: api apigateway
     ports: [4000]
-    components: ['test:starter-test', eureka-client, starter-zuul]
+    components:
+      - eureka-client
+      - starter-zuul
+      - 'test:starter-test'
   security:
     description: auth service
     ports: [5000]

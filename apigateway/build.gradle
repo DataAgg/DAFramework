@@ -11,9 +11,9 @@ description = """api apigateway"""
 
 
 dependencies {
-	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
 	compile 'org.springframework.cloud:spring-cloud-starter-zuul'
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
