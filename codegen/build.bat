@@ -1,3 +1,4 @@
 @call jset.bat
 cd ..
-gradle idea bootrepackage
+start gradle idea bootrepackage
+cd ./codegen

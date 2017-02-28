@@ -43,7 +43,7 @@ subProjects:
       - compile 'org.springframework.security.oauth:spring-security-oauth2'
       - compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.2.0'
       - compile 'mysql:mysql-connector-java:5.1.9'
-      - compile 'com.baomidou:mybatis-plus:2.0.1'
+      - compile 'org.nutz:nutz:1.r.60'
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
     dependencyManagement:
       - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }

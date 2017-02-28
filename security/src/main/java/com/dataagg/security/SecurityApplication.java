@@ -1,7 +1,6 @@
 package com.dataagg.security;
 
 import com.dataagg.security.service.security.SysUserDetailsService;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
@@ -30,7 +29,6 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @EnableResourceServer
 @EnableDiscoveryClient
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@MapperScan("com.dataagg.security.mapper")
 public class SecurityApplication {
 
 	public static void main(String[] args) {

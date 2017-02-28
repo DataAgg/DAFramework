@@ -1,31 +1,29 @@
 plugins {
-		id 'java'
-		id 'eclipse'
-		id 'idea'
-		id 'org.springframework.boot' version '1.4.4.RELEASE'
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+	id 'org.springframework.boot' version '1.4.4.RELEASE'
 }
 
 group = 'com.dataagg'
 version = '0.1'
-description = """auth service"""
-
+description = """security service"""
 
 dependencies {
 	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+	compile 'org.springframework.boot:spring-boot-starter-jdbc'
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-security'
 	compile 'org.springframework.cloud:spring-cloud-starter-feign'
 	compile 'org.springframework.security.oauth:spring-security-oauth2'
-	compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.2.0'
 	compile 'mysql:mysql-connector-java:5.1.9'
-	compile 'com.baomidou:mybatis-plus:2.0.1'
+	compile 'org.nutz:nutz:1.r.60'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
-	imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
+imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
 }
-
 
 jar {
 	baseName = 'security'
@@ -44,3 +42,4 @@ tasks.withType(JavaCompile) {
 configurations {
 	published
 }
+

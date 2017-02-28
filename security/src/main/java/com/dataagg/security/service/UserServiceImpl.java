@@ -1,7 +1,7 @@
 package com.dataagg.security.service;
 
+import com.dataagg.security.dao.UserDao;
 import com.dataagg.security.domain.User;
-import com.dataagg.security.mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,25 +10,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl  implements UserService {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	@Autowired
-	private UserMapper userMapper;
+	private UserDao userDao;
 
 	@Override
 	public void create(User user) {
 
-		User existing = userMapper.getByName(user.getUsername());
+		User existing = userDao.fetch(user.getUsername());
 		Assert.isNull(existing, "user already exists: " + user.getUsername());
 
 		String hash = encoder.encode(user.getPassword());
 		user.setPassword(hash);
 
-		userMapper.update(user, null);
+		userDao._insert(user);
 
 		log.info("new user has been created: {}", user.getUsername());
 	}

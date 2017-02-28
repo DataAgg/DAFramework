@@ -36,8 +36,7 @@ subProjects:
       - security-oauth2
       - mybatis-spring-boot-starter
       - mysql
-#      - druid
-      - mybatis-plus
+      - nutz
       - 'test:starter-test'
   account:
     description: account service

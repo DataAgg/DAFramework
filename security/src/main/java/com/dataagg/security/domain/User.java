@@ -1,27 +1,27 @@
 package com.dataagg.security.domain;
 
-import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.Name;
+import org.nutz.dao.entity.annotation.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@TableName("sys_users")
-public class User extends Model<User> implements UserDetails {
-	@TableId(value = "id")
+@Table("sys_users")
+public class User implements UserDetails {
+	@Id
 	private Long id;
 
-	@TableField(value = "user_name")
+	@Name
+	@Column("user_name")
 	private String username;
 
+	@Column
 	private String password;
 
-	@TableField(exist=false)
 	private List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
 	@Override
@@ -82,10 +82,5 @@ public class User extends Model<User> implements UserDetails {
 	@Override
 	public String toString() {
 		return "User{" + "id=" + id + ", username='" + username + "\'}";
-	}
-
-	@Override
-	protected Serializable pkVal() {
-		return id;
 	}
 }

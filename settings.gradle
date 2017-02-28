@@ -1,1 +1,4 @@
-			include ':service-center', ':apigateway', ':security', ':account'
+		include ':service-center'
+		include ':apigateway'
+		include ':security'
+		include ':account'

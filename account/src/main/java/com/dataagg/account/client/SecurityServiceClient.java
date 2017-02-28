@@ -6,10 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "security")
+@FeignClient(name = "security", url = "/security")
 public interface SecurityServiceClient {
-
-	@RequestMapping(method = RequestMethod.POST, value = "/security/users", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(method = RequestMethod.POST, value = "/users", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	void createUser(User user);
-
 }

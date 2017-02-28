@@ -1,14 +1,13 @@
 plugins {
-		id 'java'
-		id 'eclipse'
-		id 'idea'
-		id 'org.springframework.boot' version '1.4.4.RELEASE'
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+	id 'org.springframework.boot' version '1.4.4.RELEASE'
 }
 
 group = 'com.dataagg'
 version = '0.1'
 description = """account service"""
-
 
 dependencies {
 	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
@@ -24,9 +23,8 @@ dependencies {
 }
 
 dependencyManagement {
-	imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
+imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR5' }
 }
-
 
 jar {
 	baseName = 'account'
@@ -45,3 +43,4 @@ tasks.withType(JavaCompile) {
 configurations {
 	published
 }
+

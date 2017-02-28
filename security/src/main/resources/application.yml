@@ -3,11 +3,9 @@ spring:
     name: security
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: "jdbc:mysql://192.168.31.226:3307/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+    url: "jdbc:mysql://127.0.0.1:3307/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
     username: dataagg
     password: EdIyNje2GsRyzPDXQfp1
-mybatis:
-  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
 
 server:
   context-path: /security

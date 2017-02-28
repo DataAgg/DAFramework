@@ -1,47 +1,41 @@
 package com.dataagg.security.service;
 
+import com.dataagg.security.SecurityApplication;
+import com.dataagg.security.dao.UserDao;
 import com.dataagg.security.domain.User;
-import com.dataagg.security.mapper.UserMapper;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = SecurityApplication.class)
 public class UserServiceTest {
 
-	@InjectMocks
-	private UserServiceImpl userService;
+	@Autowired
+	private UserService userService;
 
-	@Mock
-	private UserMapper userMapper;
-
-	@Before
-	public void setup() {
-		initMocks(this);
-	}
+	@Autowired
+	private UserDao userDao;
 
 	@Test
 	public void shouldCreateUser() {
-
+		Assert.isTrue(userDao.exists("watano"));
 		User user = new User();
 		user.setUsername("name" + System.currentTimeMillis());
 		user.setPassword("password");
 
 		userService.create(user);
-		//verify(userMapper, times(1)).insert(user);
-	}
+		Assert.notNull(user);
+		Assert.notNull(user.getId());
 
-	@Test(expected = IllegalArgumentException.class)
-	public void shouldFailWhenUserAlreadyExists() {
+		String username = user.getUsername();
 
-		User user = new User();
-		user.setUsername("name" + System.currentTimeMillis());
-		user.setPassword("password");
-
-		when(userMapper.getByName(user.getUsername())).thenReturn(new User());
-		userService.create(user);
+		user = userDao.fetch(user.getId());
+		Assert.notNull(user);
+		Assert.notNull(user.getId());
+		Assert.isTrue(username.equals(user.getUsername()));
 	}
 }

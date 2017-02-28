@@ -1,11 +1,9 @@
 spring:
-  data:
-    mongodb:
-      database: dataagg
-      port: 0
+  application:
+    name: account
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: "jdbc:mysql://localhost:3307/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+    url: "jdbc:mysql://127.0.0.1:3307/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
     username: dataagg
     password: EdIyNje2GsRyzPDXQfp1
 mybatis:
@@ -17,3 +15,6 @@ mybatis:
 logging:
   level:
     root: WARN
+eureka:
+  client:
+    enabled: false
