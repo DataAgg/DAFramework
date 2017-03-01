@@ -1,3 +1,4 @@
+		include ':commons'
 		include ':service-center'
 		include ':apigateway'
 		include ':security'

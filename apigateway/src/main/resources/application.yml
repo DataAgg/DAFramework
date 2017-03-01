@@ -19,7 +19,7 @@ eureka:
 security:
   oauth2:
     resource:
-      user-info-uri: http://security:5000/security/users/current
+      EUser-info-uri: http://security:5000/security/users/current
 
 ribbon:
   ReadTimeout: 20000
@@ -38,8 +38,8 @@ zuul:
         stripPrefix: false
         sensitiveHeaders:
 
-    account:
-        path: /account/**
-        serviceId: http://account:6000
+    EAccount:
+        path: /EAccount/**
+        serviceId: http://EAccount:6000
         stripPrefix: false
         sensitiveHeaders:

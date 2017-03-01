@@ -1,7 +1,7 @@
 package com.dataagg.account.service;
 
-import com.dataagg.account.domain.Account;
-import com.dataagg.account.domain.User;
+import com.dataagg.commons.domain.EAccount;
+import com.dataagg.commons.domain.EUser;
 
 public interface AccountService {
 
@@ -11,7 +11,7 @@ public interface AccountService {
 	 * @param accountName
 	 * @return found account
 	 */
-	Account findByName(String accountName);
+	EAccount findByName(String accountName);
 
 	/**
 	 * Checks if account with the same name already exists
@@ -21,12 +21,12 @@ public interface AccountService {
 	 * @param user
 	 * @return created account
 	 */
-	Account create(User user);
+	EAccount create(EUser user);
 
 	/**
-	 * save account info
+	 * save EAccount info
 	 * @param name
 	 * @param account
 	 */
-	void saveAccount(String name, Account account);
+	void saveAccount(String name, EAccount account);
 }

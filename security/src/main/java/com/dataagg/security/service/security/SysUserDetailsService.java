@@ -1,7 +1,7 @@
 package com.dataagg.security.service.security;
 
+import com.dataagg.commons.domain.EUser;
 import com.dataagg.security.dao.UserDao;
-import com.dataagg.security.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +16,7 @@ public class SysUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDao.fetch(username);
+		EUser user = userDao.fetch(username);
 		if (user == null) {
 			throw new UsernameNotFoundException(username);
 		}

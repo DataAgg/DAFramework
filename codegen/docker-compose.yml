@@ -47,13 +47,13 @@ services:
 #    links: [config, service-center]
     command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
 
-  account:
+  EAccount:
     environment:
       CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
       ACCOUNT_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
     image: java:8-jre
     volumes:
-      - ../account/build/libs/:/app/
+      - ../EAccount/build/libs/:/app/
     ports: ['6000:6000']
     expose: [6000]
     depends_on: [apigateway]

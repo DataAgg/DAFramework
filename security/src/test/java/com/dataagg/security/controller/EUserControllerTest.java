@@ -1,8 +1,8 @@
 package com.dataagg.security.controller;
 
+import com.dataagg.commons.domain.EUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.dataagg.security.SecurityApplication;
-import com.dataagg.security.domain.User;
 import com.dataagg.security.service.UserService;
 import com.sun.security.auth.UserPrincipal;
 import org.junit.Before;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SecurityApplication.class)
 @WebAppConfiguration
-public class UserControllerTest {
+public class EUserControllerTest {
 
 	private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -47,7 +47,7 @@ public class UserControllerTest {
 	@Test
 	public void shouldCreateNewUser() throws Exception {
 
-		final User user = new User();
+		final EUser user = new EUser();
 		user.setUsername("test");
 		user.setPassword("password");
 
@@ -60,7 +60,7 @@ public class UserControllerTest {
 	@Test
 	public void shouldFailWhenUserIsNotValid() throws Exception {
 
-		final User user = new User();
+		final EUser user = new EUser();
 		user.setUsername("t");
 		user.setPassword("p");
 

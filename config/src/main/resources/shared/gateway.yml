@@ -23,9 +23,9 @@ zuul:
         stripPrefix: false
         sensitiveHeaders:
 
-    account:
-        path: /account/**
-        serviceId: account
+    EAccount:
+        path: /EAccount/**
+        serviceId: EAccount
         stripPrefix: false
         sensitiveHeaders:
 

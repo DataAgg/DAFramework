@@ -34,12 +34,11 @@ subProjects:
       - starter-security
       - starter-feign
       - security-oauth2
-      - mybatis-spring-boot-starter
       - mysql
       - nutz
       - 'test:starter-test'
-  account:
-    description: account service
+  EAccount:
+    description: EAccount service
     ports: [6000]
     components:
       - eureka-client
@@ -49,8 +48,6 @@ subProjects:
       - starter-feign
 #      - starter-bus-amqp
       - cloud-security
-      - mybatis-spring-boot-starter
       - mysql
 #      - druid
-      - mybatis-plus
       - 'test:starter-test'

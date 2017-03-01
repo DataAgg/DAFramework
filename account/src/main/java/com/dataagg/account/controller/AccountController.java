@@ -1,7 +1,7 @@
 package com.dataagg.account.controller;
 
-import com.dataagg.account.domain.Account;
-import com.dataagg.account.domain.User;
+import com.dataagg.commons.domain.EAccount;
+import com.dataagg.commons.domain.EUser;
 import com.dataagg.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,22 +18,22 @@ public class AccountController {
 
 	@PreAuthorize("#oauth2.hasScope('server') or #name.equals('demo')")
 	@RequestMapping(path = "/{name}", method = RequestMethod.GET)
-	public Account getAccountByName(@PathVariable String name) {
+	public EAccount getAccountByName(@PathVariable String name) {
 		return accountService.findByName(name);
 	}
 
 	@RequestMapping(path = "/current", method = RequestMethod.GET)
-	public Account getCurrentAccount(Principal principal) {
+	public EAccount getCurrentAccount(Principal principal) {
 		return accountService.findByName(principal.getName());
 	}
 
 	@RequestMapping(path = "/current", method = RequestMethod.PUT)
-	public void saveCurrentAccount(Principal principal, @Valid @RequestBody Account account) {
-		accountService.saveAccount(principal.getName(), account);
+	public void saveCurrentAccount(Principal principal, @Valid @RequestBody EAccount EAccount) {
+		accountService.saveAccount(principal.getName(), EAccount);
 	}
 
 	@RequestMapping(path = "/", method = RequestMethod.POST)
-	public Account createNewAccount(@Valid @RequestBody User user) {
-		return accountService.create(user);
+	public EAccount createNewAccount(@Valid @RequestBody EUser EUser) {
+		return accountService.create(EUser);
 	}
 }

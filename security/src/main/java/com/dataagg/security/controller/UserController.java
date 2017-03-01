@@ -1,6 +1,6 @@
 package com.dataagg.security.controller;
 
-import com.dataagg.security.domain.User;
+import com.dataagg.commons.domain.EUser;
 import com.dataagg.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,7 +26,7 @@ public class UserController {
 
 	@PreAuthorize("#oauth2.hasScope('server')")
 	@RequestMapping(method = RequestMethod.POST)
-	public void createUser(@Valid @RequestBody User user) {
-		userService.create(user);
+	public void createUser(@Valid @RequestBody EUser EUser) {
+		userService.create(EUser);
 	}
 }

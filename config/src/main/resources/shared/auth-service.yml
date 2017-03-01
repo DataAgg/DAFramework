@@ -4,8 +4,6 @@ spring:
     url: "jdbc:mysql://localhost:3307/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
     username: dataagg
     password: EdIyNje2GsRyzPDXQfp1
-mybatis:
-  mapper-locations: classpath:mybatis/mapper/*.xml
 
 server:
   context-path: /security

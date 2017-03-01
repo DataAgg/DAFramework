@@ -1,31 +1,29 @@
 package com.dataagg.account;
 
-import com.dataagg.account.domain.User;
 import com.dataagg.account.service.AccountService;
+import com.dataagg.commons.domain.EUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.Assert;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = AccountApplication.class)
-@WebAppConfiguration
-public class AccountServiceApplicationTests {
+public class AccountApplicationTests {
 
 	@Autowired
 	private AccountService accountService;
 
 	@Test
 	public void testCreateAccount() {
-		User user = new User();
-		user.setUsername("name" + System.currentTimeMillis());
-		user.setPassword("password");
-		accountService.create(user);
+		EUser EUser = new EUser();
+		EUser.setUsername("name" + System.currentTimeMillis());
+		EUser.setPassword("password");
+		accountService.create(EUser);
 
-		Assert.notNull(user);
-		Assert.notNull(user.getUsername());
+		Assert.notNull(EUser);
+		Assert.notNull(EUser.getUsername());
 	}
 }

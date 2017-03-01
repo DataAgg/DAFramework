@@ -1,9 +1,9 @@
 package com.dataagg.security.service;
 
-import com.dataagg.security.domain.User;
+import com.dataagg.commons.domain.EUser;
 
 public interface UserService {
 
-	void create(User user);
+	void create(EUser EUser);
 
 }

@@ -1,8 +1,8 @@
 package com.dataagg.security.service;
 
+import com.dataagg.commons.domain.EUser;
 import com.dataagg.security.SecurityApplication;
 import com.dataagg.security.dao.UserDao;
-import com.dataagg.security.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SecurityApplication.class)
-public class UserServiceTest {
+public class EUserServiceTest {
 
 	@Autowired
 	private UserService userService;
@@ -23,7 +23,7 @@ public class UserServiceTest {
 	@Test
 	public void shouldCreateUser() {
 		Assert.isTrue(userDao.exists("watano"));
-		User user = new User();
+		EUser user = new EUser();
 		user.setUsername("name" + System.currentTimeMillis());
 		user.setPassword("password");
 

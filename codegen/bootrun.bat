@@ -4,7 +4,7 @@ cd ./security
 start gradle bootrun
 cd ../apigateway
 start gradle bootrun
-cd ../account
+cd ../EAccount
 start gradle bootrun
 cd ../service-center
 start gradle bootrun

@@ -1,13 +1,15 @@
 spring:
   application:
-    name: account
+    name: EAccount
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: "jdbc:mysql://127.0.0.1:3307/dataagg?useUnicode = true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
     username: dataagg
     password: EdIyNje2GsRyzPDXQfp1
-mybatis:
-  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+
+server:
+  context-path: /EAccount
+  port: 6000
 
 logging:
   level:
@@ -23,15 +25,11 @@ eureka:
 security:
   oauth2:
     resource:
-      user-info-uri: http://security:5000/security/users/current
+      EUser-info-uri: http://security:5000/security/users/current
     client:
-      clientId: account
+      clientId: EAccount
       clientSecret: ${ACCOUNT_SERVICE_PASSWORD}
       accessTokenUri: http://security:5000/security/oauth/token
       grant-type: client_credentials
       scope: server
-
-server:
-  context-path: /account
-  port: 6000
 

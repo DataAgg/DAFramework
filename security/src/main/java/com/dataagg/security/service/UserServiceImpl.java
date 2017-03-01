@@ -1,7 +1,7 @@
 package com.dataagg.security.service;
 
 import com.dataagg.security.dao.UserDao;
-import com.dataagg.security.domain.User;
+import com.dataagg.commons.domain.EUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,9 @@ public class UserServiceImpl  implements UserService {
 	private UserDao userDao;
 
 	@Override
-	public void create(User user) {
+	public void create(EUser user) {
 
-		User existing = userDao.fetch(user.getUsername());
+		EUser existing = userDao.fetch(user.getUsername());
 		Assert.isNull(existing, "user already exists: " + user.getUsername());
 
 		String hash = encoder.encode(user.getPassword());

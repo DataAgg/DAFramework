@@ -1,23 +1,27 @@
-package com.dataagg.account.domain;
+package com.dataagg.commons.domain;
 
-import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Comment;
+import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.One;
+import org.nutz.dao.entity.annotation.Table;
 
-import java.io.Serializable;
-
-@TableName("da_account")
-public class Account extends Model<Account> {
-
-	@TableId(value = "id")
+@Table("da_account")
+@Comment("账户信息")
+public class EAccount {
+	@Id
 	private Long id;
-	@TableField(value = "user_id")
+	@Column
 	private Long userId;
-	@TableField(value = "full_name")
+	@One(field = "userId")
+	private EUser EUser;
+	@Column("full_name")
 	private String fullName;
+	@Column("mobile")
 	private String mobile;
+	@Column("address")
 	private String address;
+	@Column("comment")
 	private String comment;
 
 	public Long getId() {
@@ -34,6 +38,14 @@ public class Account extends Model<Account> {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public com.dataagg.commons.domain.EUser getEUser() {
+		return EUser;
+	}
+
+	public void setEUser(com.dataagg.commons.domain.EUser EUser) {
+		this.EUser = EUser;
 	}
 
 	public String getFullName() {
@@ -68,8 +80,4 @@ public class Account extends Model<Account> {
 		this.comment = comment;
 	}
 
-	@Override
-	protected Serializable pkVal() {
-		return null;
-	}
 }

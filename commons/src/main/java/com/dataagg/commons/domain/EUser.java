@@ -1,6 +1,7 @@
-package com.dataagg.security.domain;
+package com.dataagg.commons.domain;
 
 import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Comment;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
@@ -11,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Table("sys_users")
-public class User implements UserDetails {
+@Comment("用户信息")
+public class EUser implements UserDetails {
 	@Id
 	private Long id;
 
@@ -81,6 +83,6 @@ public class User implements UserDetails {
 
 	@Override
 	public String toString() {
-		return "User{" + "id=" + id + ", username='" + username + "\'}";
+		return "EUser{" + "id=" + id + ", username='" + username + "\'}";
 	}
 }

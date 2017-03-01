@@ -1,0 +1,34 @@
+plugins {
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+}
+
+group = 'com.dataagg'
+version = '0.1'
+description = """公用实体类,VO及常用工具类"""
+
+dependencies {
+	compile 'org.springframework.security:spring-security-core:4.2.1.RELEASE'
+	compile 'mysql:mysql-connector-java:5.1.9'
+	compile 'org.nutz:nutz:1.r.60'
+}
+
+jar {
+	baseName = 'commons'
+	version = '0.1'
+	archiveName = 'bussinesObjects.jar'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	options.encoding = "UTF-8"
+}
+configurations {
+	published
+}
+

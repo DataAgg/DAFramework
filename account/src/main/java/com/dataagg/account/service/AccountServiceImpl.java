@@ -1,9 +1,10 @@
 package com.dataagg.account.service;
 
 import com.dataagg.account.client.SecurityServiceClient;
-import com.dataagg.account.domain.Account;
-import com.dataagg.account.domain.User;
-import com.dataagg.account.mapper.AccountMapper;
+import com.dataagg.account.dao.AccountDao;
+import com.dataagg.commons.domain.EAccount;
+import com.dataagg.commons.domain.EUser;
+import org.nutz.dao.Cnd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,45 +20,45 @@ public class AccountServiceImpl implements AccountService {
 	private SecurityServiceClient authClient;
 
 	@Autowired
-	private AccountMapper accountMapper;
+	private AccountDao accountDao;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Account findByName(String accountName) {
+	public EAccount findByName(String accountName) {
 		Assert.hasLength(accountName);
-		return accountMapper.findByName(accountName);
+		return accountDao.fetch(Cnd.where("full_name","=" , accountName));
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Account create(User user) {
+	public EAccount create(EUser user) {
 
-		Account existing = accountMapper.findByName(user.getUsername());
-		Assert.isNull(existing, "account already exists: " + user.getUsername());
+		EAccount existing = findByName(user.getUsername());
+		Assert.isNull(existing, "EAccount already exists: " + user.getUsername());
 
 		authClient.createUser(user);
-		Account account = new Account();
-		account.setFullName(user.getUsername());
+		EAccount EAccount = new EAccount();
+		EAccount.setFullName(user.getUsername());
 
-		//accountMapper.insert(account);
-		log.info("new account has been created: " + account.getFullName());
+		//accountMapper.insert(EAccount);
+		log.info("new EAccount has been created: " + EAccount.getFullName());
 
-		return account;
+		return EAccount;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void saveAccount(String name, Account update) {
-		Account account = accountMapper.findByName(name);
-		Assert.notNull(account, "can't find Account with name " + name);
+	public void saveAccount(String name, EAccount account) {
+		EAccount account1 = findByName(name);
+		Assert.notNull(account1, "can't find account1 with name " + name);
 
-		accountMapper.update(account, null);
+		accountDao._update(account1);
 
 		log.debug("payment {} changes has been saved", name);
 	}

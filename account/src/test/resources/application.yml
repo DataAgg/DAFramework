@@ -1,17 +1,11 @@
 spring:
   application:
-    name: account
+    name: EAccount
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: "jdbc:mysql://127.0.0.1:3307/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
     username: dataagg
     password: EdIyNje2GsRyzPDXQfp1
-mybatis:
-  mapper-locations: classpath:mybatis/mapper/*.xml
-  configuration:
-    map-underscore-to-camel-case: true
-    default-fetch-size: 100
-    default-statement-timeout: 30
 logging:
   level:
     root: WARN
