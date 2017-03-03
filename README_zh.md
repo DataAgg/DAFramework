@@ -1,5 +1,5 @@
 # DAFramework --  云南数聚基础框架
-DAFramework是云南数聚科技开源的微服务基础框架, 基于Spring-boot, Spring-security, Spring-cloud， Spring-data， Mybatis和Docker构建. 这是一个Spring-cloud的脚手架项目, 提供一些基础服务, 帮助更多的开发人员更快速地构建他们的项目. DAFramework源于[PiggyMetrics](https://github.com/sqshq/PiggyMetrics)项目.
+DAFramework是云南数聚科技开源的微服务基础框架, 基于Spring-boot, Spring-security, Spring-cloud， Spring-data和Docker构建. 这是一个Spring-cloud的脚手架项目, 提供一些基础服务, 帮助更多的开发人员更快速地构建他们的项目. DAFramework源于[PiggyMetrics](https://github.com/sqshq/PiggyMetrics)项目.
 
 ![基础组件](https://watano.gitbooks.io/daframework/content/images/componets.png "基础组件")
 
@@ -23,7 +23,7 @@ DAFramework是云南数聚科技开源的微服务基础框架, 基于Spring-boo
 + 监控系统: Spring-cloud NetFlix Turbine
 + 权限检查: Spring-cloud Security
 + 消息队列代理: Spring-cloud Bus
-+ 数据持久化访问: Spring-Data和Mybatis(Mybatis plus)
++ 数据持久化访问: Spring-Data和[NutDao](https://nutzam.com/core/dao/basic_operations.html)
 + 前端技术: ES2015/TypeScript、LESS、VueJs、Vue-router、[vux](https://github.com/airyland/vux)、echarts、axios和EsLint
 + 前端组件：[Element](https://element.eleme.io)、[Mint-UI](https://github.com/ElemeFE/mint-ui)和Bootstrap4 grid.css
 + 构建工具: [Gradle](https://gradle.org/)和[Cooking](http://cookingjs.github.io/)

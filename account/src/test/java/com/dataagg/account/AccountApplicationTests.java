@@ -1,5 +1,6 @@
 package com.dataagg.account;
 
+import com.dataagg.account.client.WeChatServiceClient;
 import com.dataagg.account.service.AccountService;
 import com.dataagg.commons.domain.EUser;
 import org.junit.Test;
@@ -16,6 +17,9 @@ public class AccountApplicationTests {
 	@Autowired
 	private AccountService accountService;
 
+	@Autowired
+	private WeChatServiceClient weChatServiceClient;
+
 	@Test
 	public void testCreateAccount() {
 		EUser EUser = new EUser();
@@ -25,5 +29,10 @@ public class AccountApplicationTests {
 
 		Assert.notNull(EUser);
 		Assert.notNull(EUser.getUsername());
+	}
+
+	@Test
+	public void testWeChatService() {
+		String redirect_uri = "";
 	}
 }

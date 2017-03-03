@@ -38,16 +38,16 @@ public class AccountServiceImpl implements AccountService {
 	public EAccount create(EUser user) {
 
 		EAccount existing = findByName(user.getUsername());
-		Assert.isNull(existing, "EAccount already exists: " + user.getUsername());
+		Assert.isNull(existing, "account already exists: " + user.getUsername());
 
 		authClient.createUser(user);
-		EAccount EAccount = new EAccount();
-		EAccount.setFullName(user.getUsername());
+		EAccount account = new EAccount();
+		account.setFullName(user.getUsername());
 
-		//accountMapper.insert(EAccount);
-		log.info("new EAccount has been created: " + EAccount.getFullName());
+		//accountMapper.insert(account);
+		log.info("new account has been created: " + account.getFullName());
 
-		return EAccount;
+		return account;
 	}
 
 	/**

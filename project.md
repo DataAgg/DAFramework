@@ -34,8 +34,8 @@ auth service
 + compile 'org.springframework.cloud:spring-cloud-starter-feign'
 + testCompile 'org.springframework.boot:spring-boot-starter-test'
 
-## com.dataagg:EAccount:0.1
-EAccount service
+## com.dataagg:account:0.1
+account service
 
 + commons
 + compile 'org.springframework.boot:spring-boot-starter-jdbc'

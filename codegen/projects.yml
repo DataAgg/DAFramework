@@ -37,8 +37,8 @@ subProjects:
       - mysql
       - nutz
       - 'test:starter-test'
-  EAccount:
-    description: EAccount service
+  account:
+    description: account service
     ports: [6000]
     components:
       - eureka-client
