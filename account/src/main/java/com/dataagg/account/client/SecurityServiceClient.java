@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(name = "security", url = "/security")
 public interface SecurityServiceClient {
 	@RequestMapping(method = RequestMethod.POST, value = "/users", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	void createUser(EUser EUser);
+	void createUser(EUser user);
 }

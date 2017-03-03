@@ -28,12 +28,12 @@ public class AccountController {
 	}
 
 	@RequestMapping(path = "/current", method = RequestMethod.PUT)
-	public void saveCurrentAccount(Principal principal, @Valid @RequestBody EAccount EAccount) {
-		accountService.saveAccount(principal.getName(), EAccount);
+	public void saveCurrentAccount(Principal principal, @Valid @RequestBody EAccount account) {
+		accountService.saveAccount(principal.getName(), account);
 	}
 
 	@RequestMapping(path = "/", method = RequestMethod.POST)
-	public EAccount createNewAccount(@Valid @RequestBody EUser EUser) {
-		return accountService.create(EUser);
+	public EAccount createNewAccount(@Valid @RequestBody EUser user) {
+		return accountService.create(user);
 	}
 }

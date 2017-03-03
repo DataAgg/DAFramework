@@ -14,7 +14,7 @@ public class EAccount {
 	@Column
 	private Long userId;
 	@One(field = "userId")
-	private EUser EUser;
+	private EUser user;
 	@Column("full_name")
 	private String fullName;
 	@Column("mobile")
@@ -40,12 +40,12 @@ public class EAccount {
 		this.userId = userId;
 	}
 
-	public com.dataagg.commons.domain.EUser getEUser() {
-		return EUser;
+	public com.dataagg.commons.domain.EUser getUser() {
+		return user;
 	}
 
-	public void setEUser(com.dataagg.commons.domain.EUser EUser) {
-		this.EUser = EUser;
+	public void setUser(com.dataagg.commons.domain.EUser user) {
+		this.user = user;
 	}
 
 	public String getFullName() {

@@ -1,14 +1,14 @@
 spring:
   application:
-    name: EAccount
+    name: account
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: "jdbc:mysql://127.0.0.1:3307/dataagg?useUnicode = true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+    url: "jdbc:mysql://127.0.0.1:3307/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
     username: dataagg
     password: EdIyNje2GsRyzPDXQfp1
 
 server:
-  context-path: /EAccount
+  context-path: /account
   port: 6000
 
 logging:
@@ -25,9 +25,9 @@ eureka:
 security:
   oauth2:
     resource:
-      EUser-info-uri: http://security:5000/security/users/current
+      user-info-uri: http://security:5000/security/users/current
     client:
-      clientId: EAccount
+      clientId: account
       clientSecret: ${ACCOUNT_SERVICE_PASSWORD}
       accessTokenUri: http://security:5000/security/oauth/token
       grant-type: client_credentials

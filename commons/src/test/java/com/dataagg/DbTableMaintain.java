@@ -12,7 +12,7 @@ public class DbTableMaintain {
 		try {
 			SimpleDataSource ds = new SimpleDataSource();
 			ds.setDriverClassName("com.mysql.jdbc.Driver");
-			ds.setJdbcUrl("jdbc:mysql://127.0.0.1:3307/dataagg?useUnicode = true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull");
+			ds.setJdbcUrl("jdbc:mysql://127.0.0.1:3307/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull");
 			ds.setUsername("dataagg");
 			ds.setPassword("EdIyNje2GsRyzPDXQfp1");
 			NutDao dao = new NutDao(ds);

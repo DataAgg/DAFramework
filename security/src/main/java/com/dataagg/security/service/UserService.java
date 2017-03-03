@@ -4,6 +4,6 @@ import com.dataagg.commons.domain.EUser;
 
 public interface UserService {
 
-	void create(EUser EUser);
+	void create(EUser user);
 
 }

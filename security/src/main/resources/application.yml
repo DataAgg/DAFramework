@@ -25,4 +25,4 @@ eureka:
 security:
   oauth2:
     resource:
-      EUser-info-uri: http://security:5000/security/users/current
+      user-info-uri: http://security:5000/security/users/current

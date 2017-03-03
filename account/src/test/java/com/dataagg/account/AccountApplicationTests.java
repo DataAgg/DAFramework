@@ -22,13 +22,13 @@ public class AccountApplicationTests {
 
 	@Test
 	public void testCreateAccount() {
-		EUser EUser = new EUser();
-		EUser.setUsername("name" + System.currentTimeMillis());
-		EUser.setPassword("password");
-		accountService.create(EUser);
+		EUser user = new EUser();
+		user.setUsername("name" + System.currentTimeMillis());
+		user.setPassword("password");
+		accountService.create(user);
 
-		Assert.notNull(EUser);
-		Assert.notNull(EUser.getUsername());
+		Assert.notNull(user);
+		Assert.notNull(user.getUsername());
 	}
 
 	@Test

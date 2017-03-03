@@ -17,7 +17,7 @@ public class EAuthorization {
 	@Column
 	private Long userId;
 	@One(field = "userId")
-	private EUser EUser;
+	private EUser user;
 	@Column("access_token")
 	private String accessToken;
 	@Column("expires_in")
@@ -45,12 +45,12 @@ public class EAuthorization {
 		this.userId = userId;
 	}
 
-	public EUser getEUser() {
-		return EUser;
+	public EUser getUser() {
+		return user;
 	}
 
-	public void setEUser(EUser EUser) {
-		this.EUser = EUser;
+	public void setUser(EUser user) {
+		this.user = user;
 	}
 
 	public String getAccessToken() {

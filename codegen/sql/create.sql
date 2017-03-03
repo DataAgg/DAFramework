@@ -16,7 +16,7 @@ CREATE TABLE `da_account` (
 	`id`        BIGINT(32)  NOT NULL AUTO_INCREMENT
 	COMMENT '主键id',
 	`user_id`        BIGINT(32)  NOT NULL
-	COMMENT 'EUser id',
+	COMMENT 'user id',
 	`full_name` VARCHAR(64) NULL     DEFAULT NULL
 	COMMENT '全名',
 	`mobile`    VARCHAR(64) NULL     DEFAULT NULL

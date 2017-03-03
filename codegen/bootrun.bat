@@ -1,10 +1,5 @@
 call jset.bat
-cd ..
-cd ./security
-start gradle bootrun
-cd ../apigateway
-start gradle bootrun
-cd ../EAccount
-start gradle bootrun
-cd ../service-center
-start gradle bootrun
+start gradle bootrun -p ../security
+start gradle bootrun -p ../apigateway
+start gradle bootrun -p ../account
+start gradle bootrun -p ../service-center
