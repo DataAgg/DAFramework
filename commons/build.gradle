@@ -10,7 +10,7 @@ description = """公用实体类,VO及常用工具类"""
 
 dependencies {
 	compile 'org.springframework.security:spring-security-core:4.2.1.RELEASE'
-	compile 'mysql:mysql-connector-java:5.1.9'
+	compile 'mysql:mysql-connector-java:5.1.41'
 	compile 'org.nutz:nutz:1.r.60'
 }
 

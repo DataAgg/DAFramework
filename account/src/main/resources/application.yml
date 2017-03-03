@@ -3,7 +3,7 @@ spring:
     name: account
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: "jdbc:mysql://127.0.0.1:3307/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+    url: "jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
     username: dataagg
     password: EdIyNje2GsRyzPDXQfp1
 
