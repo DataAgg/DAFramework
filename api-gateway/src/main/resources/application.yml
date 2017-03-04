@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: apigateway
+
+server:
+  port: 4000
+
+logging:
+  level:
+    root: WARN
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://service-center:8761/eureka/
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://security:5000/security/users/current
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    security:
+        path: /security/**
+        url: http://security:5000
+        stripPrefix: false
+        sensitiveHeaders:
+
+    account:
+        path: /account/**
+        serviceId: http://account:6000
+        stripPrefix: false
+        sensitiveHeaders:

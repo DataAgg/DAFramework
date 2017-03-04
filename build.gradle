@@ -1,22 +1,16 @@
-plugins {
-	id 'eclipse'
-	id 'idea'
-	id 'com.github.ben-manes.versions' version '0.13.0'
-}
+	plugins {
+			id 'eclipse'
+			id 'idea'
+			id 'com.github.ben-manes.versions' version '0.13.0'
+				}
 
-group = 'com.dataagg'
-version = '0.1'
-description = """DAFramework"""
+	group = 'com.dataagg'
+	version = '0.1'
+	description = """DAFramework"""
+	
 
-repositories {
-	mavenLocal()
-	maven {
-		url "http://maven.aliyun.com/nexus/content/groups/public/"
-	}
-	jcenter()
-	//mavenCentral()
-}
-subprojects {
+
+
 	repositories {
 		mavenLocal()
 		maven {
@@ -25,20 +19,29 @@ subprojects {
 		jcenter()
 		//mavenCentral()
 	}
-}
-idea{
-	project {
-		languageLevel = '1.8'
-		ipr {
-			withXml {
-				provider -> provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
+		subprojects {
+	repositories {
+		mavenLocal()
+		maven {
+			url "http://maven.aliyun.com/nexus/content/groups/public/"
+		}
+		jcenter()
+		//mavenCentral()
+	}
+		}
+	idea{
+		project {
+			languageLevel = '1.8'
+			ipr {
+				withXml {
+					provider -> provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
+				}
 			}
 		}
+		module {
+			inheritOutputDirs = false
+			outputDir = file("$buildDir/classes/main/")
+			testOutputDir = file("$buildDir/classes/test/")
+		}
 	}
-	module {
-		inheritOutputDirs = false
-		outputDir = file("$buildDir/classes/main/")
-		testOutputDir = file("$buildDir/classes/test/")
-	}
-}
-
+		

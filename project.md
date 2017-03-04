@@ -5,45 +5,47 @@ DAFramework
 公用实体类,VO及常用工具类
 
 + compile 'org.springframework.security:spring-security-core:4.2.1.RELEASE'
-+ compile 'mysql:mysql-connector-java:5.1.9'
 + compile 'org.nutz:nutz:1.r.60'
 
 ## com.dataagg:service-center:0.1
-Service serviceCenter and service discovery
+服务注册及发现
 
-+ compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
-+ compile 'org.springframework.cloud:spring-cloud-starter-feign'
 + testCompile 'org.springframework.boot:spring-boot-starter-test'
++ compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
 
-## com.dataagg:apigateway:0.1
-api apigateway
+## com.dataagg:api-gateway:0.1
+API网关
 
++ testCompile 'org.springframework.boot:spring-boot-starter-test'
 + compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
 + compile 'org.springframework.cloud:spring-cloud-starter-zuul'
-+ testCompile 'org.springframework.boot:spring-boot-starter-test'
 
 ## com.dataagg:security:0.1
-auth service
+权限检查服务
 
-+ commons
-+ compile 'org.springframework.boot:spring-boot-starter-jdbc'
++ testCompile 'org.springframework.boot:spring-boot-starter-test'
 + compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
-+ compile 'org.springframework.boot:spring-boot-starter-web'
 + compile 'org.springframework.boot:spring-boot-starter-security'
 + compile 'org.springframework.security.oauth:spring-security-oauth2'
 + compile 'org.springframework.cloud:spring-cloud-starter-feign'
-+ testCompile 'org.springframework.boot:spring-boot-starter-test'
++ commons
++ compile 'org.springframework.boot:spring-boot-starter-web'
++ compile 'mysql:mysql-connector-java:5.1.41'
++ compile 'org.nutz:nutz:1.r.60'
++ compile 'org.springframework.boot:spring-boot-starter-jdbc'
 
 ## com.dataagg:account:0.1
-account service
+账户服务
 
-+ commons
-+ compile 'org.springframework.boot:spring-boot-starter-jdbc'
++ testCompile 'org.springframework.boot:spring-boot-starter-test'
 + compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
-+ compile 'org.springframework.boot:spring-boot-starter-web'
 + compile 'org.springframework.boot:spring-boot-starter-security'
 + compile 'org.springframework.security.oauth:spring-security-oauth2'
-+ compile 'org.springframework.cloud:spring-cloud-starter-feign'
 + compile 'org.springframework.cloud:spring-cloud-security:1.1.3.RELEASE'
-+ testCompile 'org.springframework.boot:spring-boot-starter-test'
++ compile 'org.springframework.cloud:spring-cloud-starter-feign'
++ commons
++ compile 'org.springframework.boot:spring-boot-starter-web'
++ compile 'mysql:mysql-connector-java:5.1.41'
++ compile 'org.nutz:nutz:1.r.60'
++ compile 'org.springframework.boot:spring-boot-starter-jdbc'
 

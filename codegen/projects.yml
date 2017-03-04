@@ -1,13 +1,16 @@
 WorkDir: ..
 props:
-  bootVersion: 4.2.1.RELEASE
+  bootVersion: 1.4.4.RELEASE
   cloudVersion: Camden.SR5
+  springSecurityVersion: "4.2.1.RELEASE"
   clientSecret: YFzCAfocMInyJ5YaO805
-
+  jdbcUrl: "jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+  jdbcUser: "dataagg"
+  jdbcPswd: "EdIyNje2GsRyzPDXQfp1"
 group: com.dataagg
 project: DAFramework
 version: 0.1
-plugins: [eclipse, idea, 'com.github.ben-manes.versions:0.13.0']
+plugins: [eclipse, idea, "'com.github.ben-manes.versions:0.13.0'"]
 description: DAFramework
 
 subProjects:
@@ -17,19 +20,18 @@ subProjects:
     plugins: [java, eclipse, idea]
     archiveName: commons.jar
     deps:
-      - compile 'org.springframework.security:spring-security-core:${bootVersion}'
-      - compile 'mysql:mysql-connector-java:5.1.41'
+      - compile 'org.springframework.security:spring-security-core:${springSecurityVersion}'
       - compile 'org.nutz:nutz:1.r.60'
 #  config:
 #    description: config server
 #    ports: {config-server: 8888}
 #    components: [config-server, starter-security]
   service-center:
-    description: Service registry and discovery
+    description: 服务注册及发现
     ports: 8761
     components: [springBoot, eurekaServer]
   api-gateway:
-    description: API gateway
+    description: API网关
     ports: 80
     components: [springBoot, eurekaClient, zuul]
     config:
@@ -46,10 +48,10 @@ subProjects:
               stripPrefix: false
               sensitiveHeaders:
   security:
-    description: security service
+    description: 权限检查服务
     ports: 5000
-    components: [springBoot, jdbc, eurekaClient, securityServer, ':commons']
+    components: [springBoot, eurekaClient, securityServer, feign, ':commons', starterWeb, starterJdbc]
   account:
-    description: account service
+    description: 账户服务
     ports: 6000
-    components: [springBoot, jdbc, eurekaClient, securityClient, feign, ':commons']
+    components: [springBoot, eurekaClient, securityClient, feign, ':commons', starterWeb, starterJdbc]

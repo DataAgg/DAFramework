@@ -7,17 +7,19 @@ plugins {
 
 group = 'com.dataagg'
 version = '0.1'
-description = """auth service"""
+description = """权限检查服务"""
 
 dependencies {
-	compile project(':commons')
-	compile 'org.springframework.boot:spring-boot-starter-jdbc'
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
-	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-security'
 	compile 'org.springframework.security.oauth:spring-security-oauth2'
 	compile 'org.springframework.cloud:spring-cloud-starter-feign'
-	testCompile 'org.springframework.boot:spring-boot-starter-test'
+	compile project(':commons')
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'mysql:mysql-connector-java:5.1.41'
+	compile 'org.nutz:nutz:1.r.60'
+	compile 'org.springframework.boot:spring-boot-starter-jdbc'
 }
 
 dependencyManagement {

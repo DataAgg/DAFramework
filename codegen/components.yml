@@ -1,11 +1,10 @@
 springBoot:
-  plugins: [java, eclipse, idea, 'org.springframework.boot:${bootVersion}']
+  plugins: [java, eclipse, idea, "'org.springframework.boot:${bootVersion}'"]
   archiveName: app.jar
   deps:
-    - compile 'org.springframework.boot:spring-boot-starter-web'
     - testCompile 'org.springframework.boot:spring-boot-starter-test'
   dependencyManagement:
-    - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:${cloudVersion}' }
+    - "imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:${cloudVersion}' }"
   config:
     spring:
       application:
@@ -16,18 +15,24 @@ springBoot:
     logging:
       level:
         root: WARN
-jdbc:
+starterWeb:
+  plugins: [java, eclipse, idea, "'org.springframework.boot:${bootVersion}'"]
+  archiveName: app.jar
+  deps:
+    - compile 'org.springframework.boot:spring-boot-starter-web'
+starterJdbc:
   deps:
     - compile 'mysql:mysql-connector-java:5.1.41'
     # - compile 'com.alibaba:druid:1.0.26'
     - compile 'org.nutz:nutz:1.r.60'
+    - compile 'org.springframework.boot:spring-boot-starter-jdbc'
   config:
     spring:
       datasource:
         driver-class-name: com.mysql.jdbc.Driver
-        url: "jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
-        username: dataagg
-        password: EdIyNje2GsRyzPDXQfp1
+        url: ${jdbcUrl}
+        username: ${jdbcUser}
+        password: ${jdbcPswd}
 eurekaServer:
   deps:
       - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
