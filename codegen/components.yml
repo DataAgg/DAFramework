@@ -1,0 +1,95 @@
+springBoot:
+  plugins: [java, eclipse, idea, 'org.springframework.boot:${bootVersion}']
+  archiveName: app.jar
+  deps:
+    - compile 'org.springframework.boot:spring-boot-starter-web'
+    - testCompile 'org.springframework.boot:spring-boot-starter-test'
+  dependencyManagement:
+    - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:${cloudVersion}' }
+  config:
+    spring:
+      application:
+        name: ${_SubProject_}
+    server:
+      context-path: /${_SubProject_}
+      port: ${_SubProjectPort_}
+    logging:
+      level:
+        root: WARN
+jdbc:
+  deps:
+    - compile 'mysql:mysql-connector-java:5.1.41'
+    # - compile 'com.alibaba:druid:1.0.26'
+    - compile 'org.nutz:nutz:1.r.60'
+  config:
+    spring:
+      datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: "jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+        username: dataagg
+        password: EdIyNje2GsRyzPDXQfp1
+eurekaServer:
+  deps:
+      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
+  dependencyManagement:
+    - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:${cloudVersion}' }
+  config:
+    eureka:
+      instance:
+        prefer-ip-address: true
+      client:
+        registerWithEureka: false
+        fetchRegistry: false
+        server:
+          waitTimeInMsWhenSyncEmpty: 0
+eurekaClient:
+  deps:
+    - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+  config:
+    eureka:
+      instance:
+        prefer-ip-address: true
+      client:
+        serviceUrl:
+          defaultZone: http://service-center:8761/eureka/
+  testConfig:
+    eureka:
+      client:
+        enabled: false
+zuul:
+  deps:
+    - compile 'org.springframework.cloud:spring-cloud-starter-zuul'
+  config:
+    ribbon:
+      ReadTimeout: 20000
+      ConnectTimeout: 20000
+    zuul:
+      ignoredServices: '*'
+      host:
+        connect-timeout-millis: 20000
+        socket-timeout-millis: 20000
+securityServer:
+  deps:
+    - compile 'org.springframework.boot:spring-boot-starter-security'
+    - compile 'org.springframework.security.oauth:spring-security-oauth2'
+securityClient:
+  deps:
+    - compile 'org.springframework.boot:spring-boot-starter-security'
+    - compile 'org.springframework.security.oauth:spring-security-oauth2'
+    - compile 'org.springframework.cloud:spring-cloud-security:1.1.3.RELEASE'
+  config:
+    security:
+      oauth2:
+        resource:
+          user-info-uri: http://security:5000/security/users/current
+        client:
+          clientId: ${_SubProject_}
+          clientSecret: ${clientSecret}
+          accessTokenUri: http://security:5000/security/oauth/token
+          grant-type: client_credentials
+          scope: server
+feign:
+  deps:
+    - compile 'org.springframework.cloud:spring-cloud-starter-feign'
+
+

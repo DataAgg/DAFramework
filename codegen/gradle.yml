@@ -10,7 +10,7 @@ description: DAFramework
 subProjects:
   commons:
     version: 0.1
-    archiveName: bussinesObjects.jar
+    archiveName: commons.jar
     description: 公用实体类,VO及常用工具类
     plugins: [java, eclipse, idea]
     deps:

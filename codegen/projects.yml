@@ -1,53 +1,55 @@
 WorkDir: ..
 props:
-  spring-cloud: Camden.SR5
+  bootVersion: 4.2.1.RELEASE
+  cloudVersion: Camden.SR5
+  clientSecret: YFzCAfocMInyJ5YaO805
+
 group: com.dataagg
 project: DAFramework
 version: 0.1
+plugins: [eclipse, idea, 'com.github.ben-manes.versions:0.13.0']
 description: DAFramework
 
 subProjects:
+  commons:
+    type: jar
+    description: 公用实体类,VO及常用工具类
+    plugins: [java, eclipse, idea]
+    archiveName: commons.jar
+    deps:
+      - compile 'org.springframework.security:spring-security-core:${bootVersion}'
+      - compile 'mysql:mysql-connector-java:5.1.41'
+      - compile 'org.nutz:nutz:1.r.60'
 #  config:
 #    description: config server
 #    ports: {config-server: 8888}
 #    components: [config-server, starter-security]
   service-center:
-    description: Service serviceCenter and service discovery
-    ports: {eureka-server: 8761}
-    components:
-      - eureka-server
-      - starter-feign
-      - 'test:starter-test'
-  apigateway:
-    description: api apigateway
-    ports: [4000]
-    components:
-      - eureka-client
-      - starter-zuul
-      - 'test:starter-test'
+    description: Service registry and discovery
+    ports: 8761
+    components: [springBoot, eurekaServer]
+  api-gateway:
+    description: API gateway
+    ports: 80
+    components: [springBoot, eurekaClient, zuul]
+    config:
+      zuul:
+        routes:
+          security:
+              path: /security/**
+              url: http://security:5000
+              stripPrefix: false
+              sensitiveHeaders:
+          account:
+              path: /account/**
+              serviceId: http://account:6000
+              stripPrefix: false
+              sensitiveHeaders:
   security:
-    description: auth service
-    ports: [5000]
-    components:
-      - eureka-client
-      - starter-web
-      - starter-security
-      - starter-feign
-      - security-oauth2
-      - mysql
-      - nutz
-      - 'test:starter-test'
+    description: security service
+    ports: 5000
+    components: [springBoot, jdbc, eurekaClient, securityServer, ':commons']
   account:
     description: account service
-    ports: [6000]
-    components:
-      - eureka-client
-      - starter-web
-      - starter-security
-      - security-oauth2
-      - starter-feign
-#      - starter-bus-amqp
-      - cloud-security
-      - mysql
-#      - druid
-      - 'test:starter-test'
+    ports: 6000
+    components: [springBoot, jdbc, eurekaClient, securityClient, feign, ':commons']

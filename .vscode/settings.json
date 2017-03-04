@@ -1,0 +1,30 @@
+{
+  "files.exclude": {
+    "*.iml": "explorerExcludedFiles",
+    "*.ipr": "explorerExcludedFiles",
+    "*.iws": "explorerExcludedFiles",
+    "*.jar": "explorerExcludedFiles",
+    ".checkstyle": "explorerExcludedFiles",
+    ".class": "explorerExcludedFiles",
+    ".classpath": "explorerExcludedFiles",
+    ".idea": "explorerExcludedFiles",
+    ".mymetadata": "explorerExcludedFiles",
+    ".project": "explorerExcludedFiles",
+    ".rar": "explorerExcludedFiles",
+    ".war": "explorerExcludedFiles",
+    ".zip": "explorerExcludedFiles",
+    "**/.gradle/": "explorerExcludedFiles",
+    "**/.idea/": "explorerExcludedFiles",
+    "**/.settings/": "explorerExcludedFiles",
+    "**/.svn/": "explorerExcludedFiles",
+    "**/bin/": "explorerExcludedFiles",
+    "**/build/": "explorerExcludedFiles",
+    "**/node_modules/": "explorerExcludedFiles",
+    "**/target/": "explorerExcludedFiles",
+    "**/xtend-gen/": "explorerExcludedFiles",
+    "**/out/": "explorerExcludedFiles",
+    "**/npm-debug.log": "explorerExcludedFiles",
+    "**/yarn.lock": "explorerExcludedFiles",
+    "gateway/src/main/resources/public": "explorerExcludedFiles"
+  }
+}

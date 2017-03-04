@@ -1,6 +1,5 @@
 package com.dataagg.account;
 
-import com.dataagg.account.client.WeChatServiceClient;
 import com.dataagg.account.service.AccountService;
 import com.dataagg.commons.domain.EUser;
 import org.junit.Test;
@@ -16,9 +15,9 @@ public class AccountApplicationTests {
 
 	@Autowired
 	private AccountService accountService;
-
-	@Autowired
-	private WeChatServiceClient weChatServiceClient;
+//
+//	@Autowired
+//	private WeChatServiceClient weChatServiceClient;
 
 	@Test
 	public void testCreateAccount() {

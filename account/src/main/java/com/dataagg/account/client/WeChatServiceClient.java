@@ -1,18 +1,18 @@
 package com.dataagg.account.client;
 
+import feign.Body;
+import feign.Headers;
 import feign.Param;
+import feign.RequestLine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created by watano on 2017/2/20.
  */
 @FeignClient(name = "wechatService", url = WeChatServiceClient.BaseUrl)
+@Headers("Accept: application/json;charset=UTF-8")
 public interface WeChatServiceClient {
 	public final Logger LOG = LoggerFactory.getLogger(WeChatServiceClient.class);
 	public static String BaseUrl = "https://api.weixin.qq.com";
@@ -45,14 +45,10 @@ public interface WeChatServiceClient {
 		return url;
 	}
 
-	@RequestMapping(method = RequestMethod.POST,
-			value = "/sns/oauth2/access_token?appid={appid}&secret={secret}&code={code}&grant_type=authorization_code",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestLine("GET /sns/oauth2/access_token?appid={appid}&secret={secret}&code={code}&grant_type=authorization_code")
 	public Object accessToken(@Param("appid") String appID, @Param("secret") String secret, @Param("code") String code);
 
-	@RequestMapping(method = RequestMethod.POST,
-			value = "/sns/oauth2/refresh_token?appid={appid}&grant_type=refresh_token&refresh_token={refresh_token}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestLine("GET /sns/oauth2/refresh_token?appid={appid}&grant_type=refresh_token&refresh_token={refresh_token}")
 	public Object refreshToken(@Param("appid") String appID, @Param("refresh_token") String refresh_token);
 
 	/**
@@ -75,9 +71,7 @@ public interface WeChatServiceClient {
 	 * remark	公众号运营者对粉丝的备注，公众号运营者可在微信公众平台用户管理界面对粉丝添加备注
 	 * groupid	用户所在的分组ID
 	 */
-	@RequestMapping(method = RequestMethod.POST,
-			value = "/cgi-bin/user/info?access_token={access_token}&openid={openid}&lang=zh_CN",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestLine("GET /cgi-bin/user/info?access_token={access_token}&openid={openid}&lang=zh_CN")
 	public Object userInfo(@Param("access_token") String access_token, @Param("openid") String openid);
 
 
@@ -86,7 +80,8 @@ public interface WeChatServiceClient {
 	 * http://mp.weixin.qq.com/wiki/14/bb5031008f1494a59c6f71fa0f319c66.html
 	 *
 	 * @param access_token
-	 * @param body         { "user_list": [
+	 * @param openids
+	 *  body { "user_list": [
 	 *                     {"openid": "otvxTs4dckWG7imySrJd6jSi0CWE",
 	 *                     "lang": "zh-CN" },
 	 *                     {"openid": "otvxTs_JZ6SEiP0imdhpi50fuSZg",
@@ -108,10 +103,13 @@ public interface WeChatServiceClient {
 	 * remark	公众号运营者对粉丝的备注，公众号运营者可在微信公众平台用户管理界面对粉丝添加备注
 	 * groupid	用户所在的分组ID
 	 */
-	@RequestMapping(method = RequestMethod.POST,
-			value = "/cgi-bin/user/info/batchget?access_token={access_token}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Object batchGetUserInfo(@Param("access_token") String access_token, @RequestBody Object body);
+	//FIXME body template
+	@RequestLine("POST /cgi-bin/user/info/batchget?access_token={access_token}")
+	@Body("{ \"user_list\": [" +
+			"{\"openid\": \"{openids[0]}\", \"lang\": \"zh-CN\" }," +
+			"{\"openid\": \"{openids[1]}\", \"lang\": \"zh-CN\" }" +
+			"]}")
+	public Object batchGetUserInfo(@Param("access_token") String access_token, String[] openids);
 
 	/**
 	 * 获取用户列表
@@ -126,13 +124,9 @@ public interface WeChatServiceClient {
 	 * data	列表数据，OPENID的列表
 	 * next_openid	拉取列表的最后一个用户的OPENID
 	 */
-	@RequestMapping(method = RequestMethod.POST,
-			value = "/cgi-bin/user/get?access_token={access_token}&next_openid={next_openid}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestLine("GET /cgi-bin/user/get?access_token={access_token}&next_openid={next_openid}")
 	public Object getUser(@Param("access_token") String access_token, @Param("next_openid") String next_openid);
 
-	@RequestMapping(method = RequestMethod.POST,
-			value = "/cgi-bin/user/get?access_token={access_token}",
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestLine("GET /cgi-bin/user/get?access_token={access_token}")
 	public Object getUser(@Param("access_token") String access_token);
 }
