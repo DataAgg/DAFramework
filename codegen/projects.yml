@@ -41,12 +41,14 @@ subProjects:
               path: /security/**
               url: http://security:5000
               stripPrefix: false
-              sensitiveHeaders:
+              sensitiveHeaders: ''
           account:
               path: /account/**
               serviceId: http://account:6000
               stripPrefix: false
-              sensitiveHeaders:
+              sensitiveHeaders: ''
+    docker:
+      depends_on: [security]
   security:
     description: 权限检查服务
     ports: 5000
@@ -55,3 +57,5 @@ subProjects:
     description: 账户服务
     ports: 6000
     components: [springBoot, eurekaClient, securityClient, feign, ':commons', starterWeb, starterJdbc]
+    docker:
+      depends_on: [api-gateway]

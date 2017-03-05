@@ -15,6 +15,23 @@ springBoot:
     logging:
       level:
         root: WARN
+  testConfig:
+    spring:
+      application:
+        name: ${_SubProject_}
+    server:
+      context-path: /${_SubProject_}
+      port: ${_SubProjectPort_}
+    logging:
+      level:
+        root: WARN
+  docker:
+    image: java:8-jre
+    volumes:
+      - "../${_SubProject_}/build/libs/:/app/"
+    ports: ['${_SubProjectPort_}:${_SubProjectPort_}']
+    expose: [${_SubProjectPort_}]
+    command: ['java', '-Djava.security.egd=file:/dev/./urandom', '-Xmx200m', '-jar', '/app/app.jar']
 starterWeb:
   plugins: [java, eclipse, idea, "'org.springframework.boot:${bootVersion}'"]
   archiveName: app.jar
@@ -27,6 +44,13 @@ starterJdbc:
     - compile 'org.nutz:nutz:1.r.60'
     - compile 'org.springframework.boot:spring-boot-starter-jdbc'
   config:
+    spring:
+      datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: ${jdbcUrl}
+        username: ${jdbcUser}
+        password: ${jdbcPswd}
+  testConfig:
     spring:
       datasource:
         driver-class-name: com.mysql.jdbc.Driver
