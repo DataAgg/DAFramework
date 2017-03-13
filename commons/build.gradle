@@ -9,8 +9,10 @@ version = '0.1'
 description = """公用实体类,VO及常用工具类"""
 
 dependencies {
-	compile 'org.springframework.security:spring-security-core:4.2.1.RELEASE'
+	compile 'org.springframework.security:spring-security-core:4.2.2.RELEASE'
+	compile 'com.google.code.gson:gson:2.8.0'
 	compile 'org.nutz:nutz:1.r.60'
+	compile 'mysql:mysql-connector-java:5.1.41'
 }
 
 jar {

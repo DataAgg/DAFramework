@@ -1,14 +1,14 @@
 spring:
   application:
-    name: security
+    name: account
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
     username: dataagg
     password: EdIyNje2GsRyzPDXQfp1
 server:
-  context-path: /security
-  port: 5000
+  context-path: /account
+  port: 6000
 logging:
   level:
     root: WARN
@@ -18,3 +18,14 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://service-center:8761/eureka/
+    enabled: false
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://security:5000/security/users/current
+    client:
+      clientId: account
+      clientSecret: YFzCAfocMInyJ5YaO805
+      accessTokenUri: http://security:5000/security/oauth/token
+      grant-type: client_credentials
+      scope: server

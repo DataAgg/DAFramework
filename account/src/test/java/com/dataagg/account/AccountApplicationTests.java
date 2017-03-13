@@ -26,8 +26,8 @@ public class AccountApplicationTests {
 		user.setPassword("password");
 		accountService.create(user);
 
-		Assert.notNull(user);
-		Assert.notNull(user.getUsername());
+		Assert.notNull(user, "");
+		Assert.notNull(user.getUsername(), "");
 	}
 
 	@Test

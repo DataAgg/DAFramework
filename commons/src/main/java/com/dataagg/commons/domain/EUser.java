@@ -3,15 +3,15 @@ package com.dataagg.commons.domain;
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Comment;
 import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.ManyMany;
 import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Table("sys_users")
+@Table("sys_user")
 @Comment("用户信息")
 public class EUser implements UserDetails {
 	@Id
@@ -24,7 +24,10 @@ public class EUser implements UserDetails {
 	@Column
 	private String password;
 
-	private List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+	private List<EAuthority> grantedAuthorities = new ArrayList<>();
+
+	@ManyMany(relation = "sys_user_role", from = "userid", to = "roleid")
+	private List<ERole> roles = new ArrayList<>();
 
 	@Override
 	public String getPassword() {
@@ -36,12 +39,12 @@ public class EUser implements UserDetails {
 		return username;
 	}
 
-	public void setGrantedAuthorities(List<GrantedAuthority> grantedAuthorities) {
+	public void setGrantedAuthorities(List<EAuthority> grantedAuthorities) {
 		this.grantedAuthorities = grantedAuthorities;
 	}
 
 	@Override
-	public List<GrantedAuthority> getAuthorities() {
+	public List<EAuthority> getAuthorities() {
 		return grantedAuthorities;
 	}
 
@@ -59,6 +62,14 @@ public class EUser implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<ERole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<ERole> roles) {
+		this.roles = roles;
 	}
 
 	@Override

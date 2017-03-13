@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: api-gateway
+server:
+  context-path: /api-gateway
+  port: 80
+logging:
+  level:
+    root: WARN
+eureka:
+  client:
+    enabled: false

@@ -13,6 +13,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://service-center:8761/eureka/
+    enabled: false
 ribbon:
   ReadTimeout: 20000
   ConnectTimeout: 20000
@@ -32,13 +33,3 @@ zuul:
       serviceId: http://account:6000
       stripPrefix: false
       sensitiveHeaders: ''
-security:
-  oauth2:
-    resource:
-      user-info-uri: http://security:5000/security/users/current
-    client:
-      clientId: api-gateway
-      clientSecret: YFzCAfocMInyJ5YaO805
-      accessTokenUri: http://security:5000/security/oauth/token
-      grant-type: client_credentials
-      scope: server

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class ErrorHandler {
-
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	// TODO add MethodArgumentNotValidException handler

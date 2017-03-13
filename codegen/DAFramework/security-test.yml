@@ -13,5 +13,9 @@ logging:
   level:
     root: WARN
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
+    serviceUrl:
+      defaultZone: http://service-center:8761/eureka/
     enabled: false

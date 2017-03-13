@@ -27,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
 	 */
 	@Override
 	public EAccount findByName(String accountName) {
-		Assert.hasLength(accountName);
+		Assert.hasLength(accountName, "");
 		return accountDao.fetch(Cnd.where("full_name","=" , accountName));
 	}
 

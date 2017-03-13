@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: service-center
+server:
+  context-path: /service-center
+  port: 8761
+logging:
+  level:
+    root: WARN

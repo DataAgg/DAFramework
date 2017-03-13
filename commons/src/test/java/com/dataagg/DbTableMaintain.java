@@ -21,6 +21,5 @@ public class DbTableMaintain {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
 	}
 }

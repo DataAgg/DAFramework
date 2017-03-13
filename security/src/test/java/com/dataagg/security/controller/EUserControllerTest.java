@@ -1,10 +1,11 @@
 package com.dataagg.security.controller;
 
-import com.dataagg.commons.domain.EUser;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.dataagg.security.SecurityApplication;
-import com.dataagg.security.service.UserService;
-import com.sun.security.auth.UserPrincipal;
+import static org.mockito.MockitoAnnotations.initMocks;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,11 +18,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.mockito.MockitoAnnotations.initMocks;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.dataagg.commons.domain.EUser;
+import com.dataagg.security.SecurityApplication;
+import com.dataagg.security.UserPrincipal;
+import com.dataagg.security.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SecurityApplication.class)
@@ -41,7 +42,7 @@ public class EUserControllerTest {
 	@Before
 	public void setup() {
 		initMocks(this);
-		this.mockMvc = MockMvcBuilders.standaloneSetup(accountController).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(accountController).build();
 	}
 
 	@Test
@@ -53,8 +54,7 @@ public class EUserControllerTest {
 
 		String json = mapper.writeValueAsString(user);
 
-		mockMvc.perform(post("/users").contentType(MediaType.APPLICATION_JSON).content(json))
-				.andExpect(status().isOk());
+		mockMvc.perform(post("/users").contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isOk());
 	}
 
 	@Test
@@ -64,14 +64,11 @@ public class EUserControllerTest {
 		user.setUsername("t");
 		user.setPassword("p");
 
-		mockMvc.perform(post("/users"))
-				.andExpect(status().isBadRequest());
+		mockMvc.perform(post("/users")).andExpect(status().isBadRequest());
 	}
 
 	@Test
 	public void shouldReturnCurrentUser() throws Exception {
-		mockMvc.perform(get("/users/current").principal(new UserPrincipal("test")))
-				.andExpect(jsonPath("$.name").value("test"))
-				.andExpect(status().isOk());
+		mockMvc.perform(get("/users/current").principal(new UserPrincipal("test"))).andExpect(jsonPath("$.name").value("test")).andExpect(status().isOk());
 	}
 }

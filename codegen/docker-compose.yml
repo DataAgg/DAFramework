@@ -1,98 +1,28 @@
 version: '2'
 services:
-#  config:
-#    environment:
-#      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-#    image: java:8-jre
-#    volumes:
-#      - ../config/build/libs/:/app/
-#    ports: [ '8888:8888']
-#    expose: [8888]
-#    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
-
   service-center:
-    environment:
-      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
     image: java:8-jre
-    volumes:
-      - ../service-center/build/libs/:/app/
+    volumes: ['../service-center/build/libs/:/app/']
     ports: ['8761:8761']
     expose: [8761]
-#    depends_on: [config]
-#    links: [config]
-    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
-
-  security:
-    environment:
-      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-      ACCOUNT_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
+    command: [java, '-Djava.security.egd=file:/dev/./urandom', -Xmx200m, -jar, /app/app.jar]
+  api-gateway:
     image: java:8-jre
-    volumes:
-      - ../security/build/libs/:/app/
+    volumes: ['../api-gateway/build/libs/:/app/']
+    ports: ['80:80']
+    expose: [80]
+    command: [java, '-Djava.security.egd=file:/dev/./urandom', -Xmx200m, -jar, /app/app.jar]
+    depends_on: [security]
+  security:
+    image: java:8-jre
+    volumes: ['../security/build/libs/:/app/']
     ports: ['5000:5000']
     expose: [5000]
-#    depends_on: [service-center]
-#    links: [config, service-center]
-    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
-
-  apigateway:
-    environment:
-      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-    image: java:8-jre
-    volumes:
-      - ../apigateway/build/libs/:/app/
-    ports: ['4000:4000']
-    expose: [80]
-    depends_on: [security]
-#    links: [config, service-center]
-    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
-
+    command: [java, '-Djava.security.egd=file:/dev/./urandom', -Xmx200m, -jar, /app/app.jar]
   account:
-    environment:
-      CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-      ACCOUNT_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
     image: java:8-jre
-    volumes:
-      - ../account/build/libs/:/app/
+    volumes: ['../account/build/libs/:/app/']
     ports: ['6000:6000']
     expose: [6000]
-    depends_on: [apigateway]
-#    links: [config, service-center, apigateway]
-    command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx200m", "-jar", "/app/app.jar"]
-
-  # statistics-service:
-  #   environment:
-  #     CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-  #     MONGODB_PASSWORD: YFzCAfocMInyJ5YaO805
-  #     STATISTICS_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-  #   image: sqshq/dataagg-statistics-service
-  #   restart: always
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "10"
-
-  # notification-service:
-  #   environment:
-  #     CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-  #     MONGODB_PASSWORD: YFzCAfocMInyJ5YaO805
-  #     NOTIFICATION_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-  #   image: sqshq/dataagg-notification-service
-  #   restart: always
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "10"
-
-  # monitoring:
-  #   environment:
-  #     CONFIG_SERVICE_PASSWORD: YFzCAfocMInyJ5YaO805
-  #   image: sqshq/dataagg-monitoring
-  #   restart: always
-  #   ports:
-  #     - 9000:8080
-  #     - 8989:8989
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "10"
+    command: [java, '-Djava.security.egd=file:/dev/./urandom', -Xmx200m, -jar, /app/app.jar]
+    depends_on: [api-gateway]
