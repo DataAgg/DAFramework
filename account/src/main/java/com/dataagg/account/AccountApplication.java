@@ -1,15 +1,11 @@
 package com.dataagg.account;
 
-import com.dataagg.account.service.security.CustomUserInfoTokenServices;
-import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.context.annotation.Bean;
@@ -24,10 +20,14 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 
+import com.dataagg.account.service.security.CustomUserInfoTokenServices;
+
+import feign.RequestInterceptor;
+
 @SpringBootApplication
 @EnableResourceServer
-@EnableDiscoveryClient
-@EnableEurekaClient
+//@EnableDiscoveryClient
+//@EnableEurekaClient
 @EnableOAuth2Client
 @EnableFeignClients
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -49,7 +49,7 @@ public class AccountApplication extends ResourceServerConfigurerAdapter {
 	}
 
 	@Bean
-	public RequestInterceptor oauth2FeignRequestInterceptor(){
+	public RequestInterceptor oauth2FeignRequestInterceptor() {
 		return new OAuth2FeignRequestInterceptor(new DefaultOAuth2ClientContext(), clientCredentialsResourceDetails());
 	}
 
@@ -65,8 +65,6 @@ public class AccountApplication extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/" , "/demo").permitAll()
-				.anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/", "/demo").permitAll().anyRequest().authenticated();
 	}
 }

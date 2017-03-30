@@ -1,4 +1,4 @@
-package com.dataagg.account.dao;
+package com.dataagg.security.dao;
 
 import javax.sql.DataSource;
 
@@ -7,15 +7,15 @@ import org.nutz.service.IdEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.dataagg.commons.domain.EAuthorization;
+import com.dataagg.commons.domain.ERole;
 
 /**
- * Created by watano on 2017/3/1.
+ * Created by watano on 2017/3/13.
  */
 @Component
-public class AuthorizationDao extends IdEntityService<EAuthorization> {
+public class RoleDao extends IdEntityService<ERole> {
 	@Autowired
-	public AuthorizationDao(@Autowired DataSource dataSource) {
+	public RoleDao(@Autowired DataSource dataSource) {
 		super(new NutDao(dataSource));
 	}
 }

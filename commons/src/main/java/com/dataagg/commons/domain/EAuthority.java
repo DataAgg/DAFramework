@@ -9,9 +9,10 @@ import org.springframework.security.core.GrantedAuthority;
 /**
  * Created by watano on 2017/3/13.
  */
-@Table("EAuthority")
+@Table("sys_authority")
 @Comment("权限标识")
 public class EAuthority implements GrantedAuthority {
+	private static final long serialVersionUID = 7423414401567180611L;
 	@Id
 	private Long id;
 	@Column

@@ -1,5 +1,8 @@
 package com.dataagg.commons.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Comment;
 import org.nutz.dao.entity.annotation.Id;
@@ -8,12 +11,11 @@ import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Table("sys_user")
 @Comment("用户信息")
 public class EUser implements UserDetails {
+	private static final long serialVersionUID = -4239521268597862785L;
+
 	@Id
 	private Long id;
 

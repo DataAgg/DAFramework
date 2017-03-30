@@ -1,7 +1,7 @@
 WorkDir: ..
 props:
-  bootVersion: "1.4.5.RELEASE"
-  cloudVersion: Camden.SR5
+  bootVersion: "1.5.2.RELEASE"
+  cloudVersion: Camden.SR6
   mysqlVersion: "5.1.41"
   nutzVersion: "1.r.60"
   springSecurityVersion: "4.2.2.RELEASE"
@@ -57,10 +57,10 @@ subProjects:
   security:
     description: 权限检查服务
     ports: 5000
-    components: [springBoot, eurekaClient, securityServer, feign, ':commons', starterWeb, starterJdbc]
+    components: [springBoot, securityServer, feign, ':commons', starterWeb, starterJdbc]
   account:
     description: 账户服务
     ports: 6000
-    components: [springBoot, eurekaClient, securityClient, feign, ':commons', starterWeb, starterJdbc]
+    components: [springBoot, securityClient, feign, ':commons', starterWeb, starterJdbc]
     docker:
       depends_on: [api-gateway]
