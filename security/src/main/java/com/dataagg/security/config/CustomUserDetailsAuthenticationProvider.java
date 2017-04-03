@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.dataagg.security.service.SysUserDetailsService;
+
 /**
  * Created by samchu on 2017/2/15.
  */
@@ -21,7 +23,7 @@ public class CustomUserDetailsAuthenticationProvider extends
 	private static final Logger log = LoggerFactory.getLogger(CustomUserDetailsAuthenticationProvider.class);
 
 	@Autowired
-	private CustomUserDetailsService userDetailsService;
+	private SysUserDetailsService userDetailsService;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;

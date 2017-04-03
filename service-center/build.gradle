@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'eclipse'
 	id 'idea'
-	id 'org.springframework.boot' version '1.4.5.RELEASE'
+	id 'org.springframework.boot' version '1.5.2.RELEASE'
 }
 
 group = 'com.dataagg'

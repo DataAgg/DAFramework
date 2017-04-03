@@ -20,7 +20,7 @@ public class EUser implements UserDetails {
 	private Long id;
 
 	@Name
-	@Column("user_name")
+	@Column
 	private String username;
 
 	@Column

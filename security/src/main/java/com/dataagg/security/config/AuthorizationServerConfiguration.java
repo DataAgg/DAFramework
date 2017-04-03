@@ -7,6 +7,10 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+
+import com.dataagg.security.service.SysUserDetailsService;
 
 /**
  * Created by samchu on 2017/2/15.
@@ -15,13 +19,13 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 	@Autowired
-	private CustomUserDetailsService userDetailsService;
+	private SysUserDetailsService userDetailsService;
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	@Autowired
-	private CustomJdbcClientDetailsService customJdbcClientDetailsService;
+	private ClientDetailsService clientDetailsService;
 	@Autowired
-	private CustomTokenServices tokenServices;
+	private DefaultTokenServices tokenServices;
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -30,6 +34,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.withClientDetails(customJdbcClientDetailsService);
+		clients.withClientDetails(clientDetailsService);
 	}
 }

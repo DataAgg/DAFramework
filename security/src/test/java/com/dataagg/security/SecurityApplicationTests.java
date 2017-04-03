@@ -1,14 +1,15 @@
 package com.dataagg.security;
 
-import com.dataagg.commons.domain.EUser;
-import com.dataagg.security.dao.UserDao;
-import com.dataagg.security.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
+
+import com.dataagg.commons.domain.EUser;
+import com.dataagg.security.dao.UserDao;
+import com.dataagg.security.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SecurityApplication.class)
@@ -38,5 +39,4 @@ public class SecurityApplicationTests {
 		Assert.notNull(user.getId(), "");
 		Assert.isTrue(username.equals(user.getUsername()), "");
 	}
-
 }

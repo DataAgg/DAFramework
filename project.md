@@ -29,7 +29,6 @@ API网关
 权限检查服务
 
 + testCompile 'org.springframework.boot:spring-boot-starter-test'
-+ compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
 + compile 'org.springframework.boot:spring-boot-starter-security'
 + compile 'org.springframework.security.oauth:spring-security-oauth2'
 + compile 'org.springframework.cloud:spring-cloud-starter-feign'
@@ -43,7 +42,6 @@ API网关
 账户服务
 
 + testCompile 'org.springframework.boot:spring-boot-starter-test'
-+ compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
 + compile 'org.springframework.boot:spring-boot-starter-security'
 + compile 'org.springframework.security.oauth:spring-security-oauth2'
 + compile 'org.springframework.cloud:spring-cloud-security:1.1.3.RELEASE'

@@ -15,13 +15,15 @@ public class EAccount {
 	private Long userId;
 	@One(field = "userId")
 	private EUser user;
-	@Column("full_name")
+	@Column
 	private String fullName;
-	@Column("mobile")
+	@Column
 	private String mobile;
-	@Column("address")
+	@Column
+	private String email;
+	@Column
 	private String address;
-	@Column("comment")
+	@Column
 	private String comment;
 
 	public Long getId() {
@@ -62,6 +64,14 @@ public class EAccount {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getAddress() {

@@ -18,15 +18,15 @@ public class EAuthorization {
 	private Long userId;
 	@One(field = "userId")
 	private EUser user;
-	@Column("access_token")
+	@Column
 	private String accessToken;
-	@Column("expires_in")
+	@Column
 	private Long expiresIn = 3600L;
-	@Column("token_type")
+	@Column
 	private String tokenType;
-	@Column("scope")
+	@Column
 	private String scope;
-	@Column("refresh_token")
+	@Column
 	private String refreshToken;
 
 	public Long getId() {

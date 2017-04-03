@@ -1,4 +1,4 @@
-package com.dataagg.security.config;
+package com.dataagg.security.service;
 
 import java.util.Date;
 import java.util.List;
@@ -32,21 +32,41 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import com.dataagg.security.service.ScopService;
-
 /**
  * Created by samchu on 2017/3/22.
  */
-public class CustomTokenServices extends DefaultTokenServices {
-	private static final Logger log = LoggerFactory.getLogger(CustomTokenServices.class);
+public class SysTokenServices extends DefaultTokenServices {
+	private static final Logger log = LoggerFactory.getLogger(SysTokenServices.class);
 	private ClientDetailsService clientDetailsService;
 	private AuthenticationManager authenticationManager;
-	private TokenStore tokenStore;
 	private TokenEnhancer accessTokenEnhancer;
 	private boolean supportRefreshToken = false;
 	private boolean reuseRefreshToken = true;
 
 	private ScopService scopService;
+
+	private TokenStore tokenStore;
+
+	public void setMyTokenStore(TokenStore tokenStore) {
+		this.tokenStore = tokenStore;
+	}
+
+	public AuthenticationManager getAuthenticationManager() {
+		return authenticationManager;
+	}
+
+	@Override
+	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+		this.authenticationManager = authenticationManager;
+	}
+
+	public ScopService getScopService() {
+		return scopService;
+	}
+
+	public void setScopService(ScopService scopService) {
+		this.scopService = scopService;
+	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {

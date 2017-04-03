@@ -1,39 +1,42 @@
-package com.dataagg.security.service.security;
+package com.dataagg.security.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.dataagg.commons.domain.EAuthority;
 import com.dataagg.commons.domain.ERole;
 import com.dataagg.commons.domain.EUser;
 import com.dataagg.security.dao.RoleDao;
 import com.dataagg.security.dao.UserDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Created by samchu on 2017/2/15.
+ */
 @Service
 public class SysUserDetailsService implements UserDetailsService {
-
-	@Autowired
-	private UserDao userDao;
+	private static final Logger log = LoggerFactory.getLogger(SysUserDetailsService.class);
 	@Autowired
 	private RoleDao roleDao;
+	@Autowired
+	private UserDao userDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		log.debug("loadUserByUsername:{}", userName);
 		return fetchByName(userName);
 	}
 
 	public EUser fetchByName(String userName) throws UsernameNotFoundException {
 		EUser user = userDao.fetch(userName);
-		if (user == null) {
-			throw new UsernameNotFoundException(userName);
-		}
+		if (user == null) { throw new UsernameNotFoundException(userName); }
 		return user;
 	}
 
@@ -55,14 +58,9 @@ public class SysUserDetailsService implements UserDetailsService {
 		user.setGrantedAuthorities(authorities);
 	}
 
-	@Autowired
-	private AuthenticationManager myAuthenticationManager = authentication -> {
-		EUser userDetails = fetchByName(authentication.getName());
+	public EUser fetchFullByName(String userName) throws UsernameNotFoundException {
+		EUser userDetails = fetchByName(userName);
 		updateAuthorities(userDetails);
-		return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
-	};
-
-	public AuthenticationManager getAuthenticationManager() {
-		return myAuthenticationManager;
+		return userDetails;
 	}
 }

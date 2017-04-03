@@ -1,35 +1,52 @@
 package com.dataagg.security.config;
 
+import javax.sql.DataSource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
-import com.dataagg.security.service.ScopService;
+import com.dataagg.commons.domain.EUser;
+import com.dataagg.security.service.SysUserDetailsService;
 
 /**
  * Created by samchu on 2017/2/15.
  */
 @Configuration
 @EnableWebSecurity
+@EnableAuthorizationServer
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private static final Logger log = LoggerFactory.getLogger(WebSecurityConfiguration.class);
 	@Autowired
 	private CustomUserDetailsAuthenticationProvider customUserDetailsAuthenticationProvider;
 	@Autowired
-	private JdbcClientDetailsService jdbcClientDetailsService;
+	private DataSource dataSource;
 	@Autowired
-	private ScopService scopService;
+	private ClientDetailsService clientDetailsService;
+	@Autowired
+	private SysUserDetailsService userDetailsService;
+
+	private AuthenticationManager myAuthenticationManager = authentication -> {
+		EUser userDetails = userDetailsService.fetchFullByName(authentication.getName());
+		return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
+	};
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,20 +62,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public TokenStore tokenStore() {
-		//JdbcTokenStore jdbcTokenStore = new JdbcTokenStore(dataSource);
-		return new CustomTokenStore();
+		JdbcTokenStore jdbcTokenStore = new JdbcTokenStore(dataSource);
+		return jdbcTokenStore;
 	}
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
-	//    @Override
-	//    @Bean
-	//    public AuthenticationManager authenticationManagerBean() throws Exception {
-	//        return super.authenticationManagerBean();
-	//    }
 
 	@Bean
 	public JwtAccessTokenConverter jwtAccessTokenConverter() {
@@ -70,13 +81,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public CustomTokenServices getDefaultTokenServices() throws Exception {
-		CustomTokenServices tokenServices = new CustomTokenServices();
-		tokenServices.setAuthenticationManager(authenticationManagerBean());
+	public ClientDetailsService jdbcClientDetailsService() {
+		return new JdbcClientDetailsService(dataSource);
+	}
+
+	@Bean
+	public DefaultTokenServices getDefaultTokenServices() throws Exception {
+		DefaultTokenServices tokenServices = new DefaultTokenServices();
+		tokenServices.setAuthenticationManager(myAuthenticationManager);
 		tokenServices.setTokenStore(tokenStore());
-		tokenServices.setAccessTokenEnhancer(jwtAccessTokenConverter());
-		tokenServices.setClientDetailsService(jdbcClientDetailsService);
-		tokenServices.setScopService(scopService);
+		tokenServices.setTokenEnhancer(jwtAccessTokenConverter());
+		tokenServices.setClientDetailsService(clientDetailsService);
 		tokenServices.setSupportRefreshToken(true);
 		return tokenServices;
 	}
