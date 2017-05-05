@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -21,7 +22,9 @@ import org.springframework.security.oauth2.provider.client.JdbcClientDetailsServ
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import com.dataagg.commons.domain.EUser;
 import com.dataagg.security.service.SysUserDetailsService;
@@ -32,6 +35,7 @@ import com.dataagg.security.service.SysUserDetailsService;
 @Configuration
 @EnableWebSecurity
 @EnableAuthorizationServer
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private static final Logger log = LoggerFactory.getLogger(WebSecurityConfiguration.class);
 	@Autowired
@@ -43,6 +47,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private SysUserDetailsService userDetailsService;
 
+	@Autowired
+	private PersistentTokenRepository tokenRepository;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	private AuthenticationManager myAuthenticationManager = authentication -> {
 		EUser userDetails = userDetailsService.fetchFullByName(authentication.getName());
 		return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
@@ -52,12 +62,30 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		log.info(">> WebSecurityConfiguration.configure AuthenticationManagerBuilder={}", auth);
 		auth.authenticationProvider(customUserDetailsAuthenticationProvider);
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 		log.info("<< WebSecurityConfiguration.configure AuthenticationManagerBuilder");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
+		// @formatter:off
+		http.antMatcher("/**").authorizeRequests()
+				.antMatchers("/", "/login**", "/webjars/**").permitAll()
+				.antMatchers("/oauth/**").permitAll()
+				.anyRequest().authenticated()
+				.and().exceptionHandling()
+				.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
+				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll()
+				.and().csrf()//.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+				//FIXME tokenRepository can't work well?
+				.and().rememberMe().tokenRepository(tokenRepository);
+//				.userDetailsService(userDetailsService);
+		// @formatter:on
+	}
+
+	@Autowired
+	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 	}
 
 	@Bean
@@ -72,15 +100,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public JwtAccessTokenConverter jwtAccessTokenConverter() {
-		final JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-		jwtAccessTokenConverter.setSigningKey("ASDFASFsdfsdfsdfsfadsf234asdfasfdas");
-		// 註解掉的原因是因為跟原本的一樣，但記錄一下如果需要特別調整可以在這調
-		// jwtAccessTokenConverter.setAccessTokenConverter(new CustomAccessTokenConverter());
-		return jwtAccessTokenConverter;
-	}
-
-	@Bean
 	public ClientDetailsService jdbcClientDetailsService() {
 		return new JdbcClientDetailsService(dataSource);
 	}
@@ -90,9 +109,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		DefaultTokenServices tokenServices = new DefaultTokenServices();
 		tokenServices.setAuthenticationManager(myAuthenticationManager);
 		tokenServices.setTokenStore(tokenStore());
-		tokenServices.setTokenEnhancer(jwtAccessTokenConverter());
 		tokenServices.setClientDetailsService(clientDetailsService);
 		tokenServices.setSupportRefreshToken(true);
 		return tokenServices;
+	}
+
+	@Bean
+	public PersistentTokenRepository tokenRepository() {
+		JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+		//		tokenRepository.setCreateTableOnStartup(true);
+		tokenRepository.setDataSource(dataSource);
+		return tokenRepository;
 	}
 }

@@ -14,66 +14,71 @@ subProjects:
     archiveName: commons.jar
     plugins: [java, eclipse, idea]
     deps:
-      - compile 'org.springframework.security:spring-security-core:4.2.2.RELEASE'
+      - compile 'org.jodd:jodd-core:3.8.5'
+      - compile 'org.jodd:jodd-bean:3.8.5'
+      - compile 'org.jodd:jodd-props:3.8.5'
       - compile 'com.google.code.gson:gson:2.8.0'
-      - compile 'org.nutz:nutz:1.r.60'
-      - compile 'mysql:mysql-connector-java:5.1.41'
+      - compile 'org.nutz:nutz:1.r.61'
+      - compile 'mysql:mysql-connector-java:6.0.6'
+      - compile 'org.springframework.boot:spring-boot-starter-jdbc:1.5.3.RELEASE'
+      - compile 'org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE'
+      - compile 'org.springframework.boot:spring-boot-starter-security:1.5.3.RELEASE'
+      - compile 'org.springframework.security:spring-security-core:4.2.2.RELEASE'
+      - compile 'org.springframework.security.oauth:spring-security-oauth2:2.0.13.RELEASE'
+      - testCompile 'junit:junit:4.12'
+      - testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.3.RELEASE'
   service-center:
     version: 0.1
     description: 服务注册及发现
     archiveName: app.jar
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.2.RELEASE']
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
     deps:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
-      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
+      - compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
     dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6' }
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE' }
   api-gateway:
     version: 0.1
     description: API网关
     archiveName: app.jar
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.2.RELEASE']
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
     deps:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
-      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+      - compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+      - compile 'org.springframework.boot:spring-boot-starter-web'
       - compile 'org.springframework.cloud:spring-cloud-starter-zuul'
-      - compile 'org.springframework.boot:spring-boot-starter-security'
-      - compile 'org.springframework.security.oauth:spring-security-oauth2'
-      - compile 'org.springframework.cloud:spring-cloud-security:1.1.3.RELEASE'
     dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6' }
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE' }
   security:
     version: 0.1
     description: 权限检查服务
     archiveName: app.jar
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.2.RELEASE']
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
     deps:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
-      - compile 'org.springframework.boot:spring-boot-starter-security'
-      - compile 'org.springframework.security.oauth:spring-security-oauth2'
+      - compile 'org.springframework.cloud:spring-cloud-starter-eureka'
       - compile 'org.springframework.cloud:spring-cloud-starter-feign'
       - compile project(':commons')
       - compile 'org.springframework.boot:spring-boot-starter-web'
-      - compile 'mysql:mysql-connector-java:5.1.41'
-      - compile 'org.nutz:nutz:1.r.60'
+      - compile 'mysql:mysql-connector-java:6.0.6'
       - compile 'org.springframework.boot:spring-boot-starter-jdbc'
     dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6' }
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE' }
   account:
     version: 0.1
     description: 账户服务
     archiveName: app.jar
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.2.RELEASE']
+    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
     deps:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
-      - compile 'org.springframework.boot:spring-boot-starter-security'
-      - compile 'org.springframework.security.oauth:spring-security-oauth2'
-      - compile 'org.springframework.cloud:spring-cloud-security:1.1.3.RELEASE'
+      - compile 'org.springframework.cloud:spring-cloud-starter-eureka'
       - compile 'org.springframework.cloud:spring-cloud-starter-feign'
       - compile project(':commons')
       - compile 'org.springframework.boot:spring-boot-starter-web'
-      - compile 'mysql:mysql-connector-java:5.1.41'
-      - compile 'org.nutz:nutz:1.r.60'
+      - compile 'mysql:mysql-connector-java:6.0.6'
       - compile 'org.springframework.boot:spring-boot-starter-jdbc'
+      - compile 'org.springframework.boot:spring-boot-starter-security'
+      - compile 'org.springframework.security.oauth:spring-security-oauth2'
+      - compile 'org.springframework.cloud:spring-cloud-security:1.1.3.RELEASE'
     dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6' }
+      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE' }

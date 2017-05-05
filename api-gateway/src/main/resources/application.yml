@@ -2,14 +2,11 @@ spring:
   application:
     name: api-gateway
 server:
-  context-path: /api-gateway
   port: 80
 logging:
   level:
     root: WARN
 eureka:
-  instance:
-    prefer-ip-address: true
   client:
     serviceUrl:
       defaultZone: http://service-center:8761/eureka/
@@ -24,21 +21,7 @@ zuul:
   routes:
     security:
       path: /security/**
-      url: http://security:5000
-      stripPrefix: false
-      sensitiveHeaders: ''
+      serviceId: security
     account:
       path: /account/**
-      serviceId: http://account:6000
-      stripPrefix: false
-      sensitiveHeaders: ''
-security:
-  oauth2:
-    resource:
-      user-info-uri: http://security:5000/security/users/current
-    client:
-      clientId: api-gateway
-      clientSecret: YFzCAfocMInyJ5YaO805
-      accessTokenUri: http://security:5000/security/oauth/token
-      grant-type: client_credentials
-      scope: server
+      serviceId: account

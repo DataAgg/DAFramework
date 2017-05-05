@@ -2,7 +2,6 @@ spring:
   application:
     name: service-center
 server:
-  context-path: /service-center
   port: 8761
 logging:
   level:
@@ -13,5 +12,5 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
-    server:
-      waitTimeInMsWhenSyncEmpty: 0
+    serviceUrl:
+      defaultZone: http://service-center:8761/eureka/

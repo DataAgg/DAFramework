@@ -9,14 +9,19 @@ version = '0.1'
 description = """公用实体类,VO及常用工具类"""
 
 dependencies {
-	compile 'org.springframework:spring-webmvc:4.3.7.RELEASE'
-	compile 'org.springframework.security:spring-security-core:4.2.2.RELEASE'
-	compile 'org.springframework.security:spring-security-config:4.2.2.RELEASE'
-	compile 'org.springframework.boot:spring-boot-starter-security:1.5.2.RELEASE'
-	compile 'org.springframework.security.oauth:spring-security-oauth2:2.1.0.RELEASE'
+	compile 'org.jodd:jodd-core:3.8.5'
+	compile 'org.jodd:jodd-bean:3.8.5'
+	compile 'org.jodd:jodd-props:3.8.5'
 	compile 'com.google.code.gson:gson:2.8.0'
-	compile 'org.nutz:nutz:1.r.60'
-	compile 'mysql:mysql-connector-java:5.1.41'
+	compile 'org.nutz:nutz:1.r.61'
+	compile 'mysql:mysql-connector-java:6.0.6'
+	compile 'org.springframework.boot:spring-boot-starter-jdbc:1.5.3.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-security:1.5.3.RELEASE'
+	compile 'org.springframework.security:spring-security-core:4.2.2.RELEASE'
+	compile 'org.springframework.security.oauth:spring-security-oauth2:2.0.13.RELEASE'
+	testCompile 'junit:junit:4.12'
+	testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.3.RELEASE'
 }
 
 jar {

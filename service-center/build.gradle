@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'eclipse'
 	id 'idea'
-	id 'org.springframework.boot' version '1.5.2.RELEASE'
+	id 'org.springframework.boot' version '1.5.3.RELEASE'
 }
 
 group = 'com.dataagg'
@@ -11,11 +11,11 @@ description = """服务注册及发现"""
 
 dependencies {
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
-	compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
+	compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
 }
 
 dependencyManagement {
-imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6' }
+imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE' }
 }
 
 jar {

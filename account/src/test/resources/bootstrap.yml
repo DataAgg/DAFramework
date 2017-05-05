@@ -1,18 +1,16 @@
 spring:
   application:
-    name: security
+    name: account
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull
     username: dataagg
     password: 3yXcH7AIK7Wrs1sQeGJe
 server:
-  port: 5000
+  port: 6000
 logging:
   level:
     root: WARN
-    com.dataagg: info
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://service-center:8761/eureka/
+    enabled: false

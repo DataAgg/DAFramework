@@ -1,15 +1,17 @@
 WorkDir: ..
 props:
-  bootVersion: "1.5.2.RELEASE"
-  cloudVersion: Camden.SR6
-  mysqlVersion: "5.1.41"
-  nutzVersion: "1.r.60"
+  slf4jVersion: "1.7.25"
+  joddVersion: "3.8.5"
+  bootVersion: "1.5.3.RELEASE"
+  cloudVersion: Dalston.RELEASE
+  mysqlVersion: "6.0.6"
+  nutzVersion: "1.r.61"
   springSecurityVersion: "4.2.2.RELEASE"
   cloudSecurityVersion: "1.1.3.RELEASE"
   clientSecret: YFzCAfocMInyJ5YaO805
-  jdbcUrl: "jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+  jdbcUrl: "jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull"
   jdbcUser: "dataagg"
-  jdbcPswd: "EdIyNje2GsRyzPDXQfp1"
+  jdbcPswd: "3yXcH7AIK7Wrs1sQeGJe"
 group: com.dataagg
 project: DAFramework
 version: 0.1
@@ -23,44 +25,51 @@ subProjects:
     plugins: [java, eclipse, idea]
     archiveName: commons.jar
     deps:
-      - compile 'org.springframework.security:spring-security-core:${springSecurityVersion}'
+      - compile 'org.jodd:jodd-core:${joddVersion}'
+      - compile 'org.jodd:jodd-bean:${joddVersion}'
+      - compile 'org.jodd:jodd-props:${joddVersion}'
       - compile 'com.google.code.gson:gson:2.8.0'
       - compile 'org.nutz:nutz:${nutzVersion}'
       - compile 'mysql:mysql-connector-java:${mysqlVersion}'
-#  config:
-#    description: config server
-#    ports: {config-server: 8888}
-#    components: [config-server, starter-security]
+      - compile 'org.springframework.boot:spring-boot-starter-jdbc:${bootVersion}'
+      - compile 'org.springframework.boot:spring-boot-starter-web:${bootVersion}'
+      - compile 'org.springframework.boot:spring-boot-starter-security:${bootVersion}'
+      - compile 'org.springframework.security:spring-security-core:${springSecurityVersion}'
+      - compile 'org.springframework.security.oauth:spring-security-oauth2:2.0.13.RELEASE'
+      - testCompile 'junit:junit:4.12'
+      - testCompile 'org.springframework.boot:spring-boot-starter-test:${bootVersion}'
+    config:
+      logging:
+        level:
+          root: WARN
+          com.dataagg: info
   service-center:
     description: 服务注册及发现
     ports: 8761
     components: [springBoot, eurekaServer]
+    config:
   api-gateway:
     description: API网关
     ports: 80
-    components: [springBoot, eurekaClient, zuul, securityClient]
+    components: [springBoot, eurekaClient, starterWeb, zuul]
     config:
       zuul:
         routes:
           security:
-              path: /security/**
-              url: http://security:5000
-              stripPrefix: false
-              sensitiveHeaders: ''
+            path: /security/**
+            serviceId: security
           account:
-              path: /account/**
-              serviceId: http://account:6000
-              stripPrefix: false
-              sensitiveHeaders: ''
+            path: /account/**
+            serviceId: account
     docker:
       depends_on: [security]
   security:
     description: 权限检查服务
     ports: 5000
-    components: [springBoot, securityServer, feign, ':commons', starterWeb, starterJdbc]
+    components: [springBoot, eurekaClient, feign, ':commons', starterWeb, starterJdbc]
   account:
     description: 账户服务
     ports: 6000
-    components: [springBoot, securityClient, feign, ':commons', starterWeb, starterJdbc]
+    components: [springBoot, eurekaClient, feign, ':commons', starterWeb, starterJdbc, securityClient]
     docker:
       depends_on: [api-gateway]

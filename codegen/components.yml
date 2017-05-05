@@ -10,7 +10,7 @@ springBoot:
       application:
         name: ${_SubProject_}
     server:
-      context-path: /${_SubProject_}
+#      context-path: /${_SubProject_}
       port: ${_SubProjectPort_}
     logging:
       level:
@@ -20,7 +20,7 @@ springBoot:
       application:
         name: ${_SubProject_}
     server:
-      context-path: /${_SubProject_}
+#      context-path: /${_SubProject_}
       port: ${_SubProjectPort_}
     logging:
       level:
@@ -41,25 +41,24 @@ starterJdbc:
   deps:
     - compile 'mysql:mysql-connector-java:${mysqlVersion}'
     # - compile 'com.alibaba:druid:1.0.26'
-    - compile 'org.nutz:nutz:${nutzVersion}'
     - compile 'org.springframework.boot:spring-boot-starter-jdbc'
   config:
     spring:
       datasource:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         url: ${jdbcUrl}
         username: ${jdbcUser}
         password: ${jdbcPswd}
   testConfig:
     spring:
       datasource:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         url: ${jdbcUrl}
         username: ${jdbcUser}
         password: ${jdbcPswd}
 eurekaServer:
   deps:
-      - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server'
+    - compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
   dependencyManagement:
     - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:${cloudVersion}' }
   config:
@@ -69,15 +68,13 @@ eurekaServer:
       client:
         registerWithEureka: false
         fetchRegistry: false
-        server:
-          waitTimeInMsWhenSyncEmpty: 0
+        serviceUrl:
+          defaultZone: http://service-center:8761/eureka/
 eurekaClient:
   deps:
-    - compile 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+    - compile 'org.springframework.cloud:spring-cloud-starter-eureka'
   config:
     eureka:
-      instance:
-        prefer-ip-address: true
       client:
         serviceUrl:
           defaultZone: http://service-center:8761/eureka/
@@ -120,5 +117,11 @@ securityClient:
 feign:
   deps:
     - compile 'org.springframework.cloud:spring-cloud-starter-feign'
-
-
+ribbon:
+  deps:
+    - compile 'org.springframework.cloud:spring-cloud-starter-ribbon'
+hystrix:
+  deps:
+    - compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
+    - compile 'org.springframework.boot:spring-boot-starter-actuator'
+    - compile 'org.springframework.cloud:spring-cloud-starter-hystrix-dashboard'

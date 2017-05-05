@@ -11,10 +11,10 @@ public class DbTableMaintain {
 	public static void main(String[] args) {
 		try {
 			SimpleDataSource ds = new SimpleDataSource();
-			ds.setDriverClassName("com.mysql.jdbc.Driver");
-			ds.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull");
+			ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+			ds.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull");
 			ds.setUsername("dataagg");
-			ds.setPassword("EdIyNje2GsRyzPDXQfp1");
+			ds.setPassword("3yXcH7AIK7Wrs1sQeGJe");
 			NutDao dao = new NutDao(ds);
 			Daos.createTablesInPackage(dao, "com.dataagg.commons.domain", false);
 			Daos.migration(dao, "com.dataagg.commons.domain", true, true, true);
