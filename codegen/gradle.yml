@@ -29,44 +29,23 @@ subProjects:
       - testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.3.RELEASE'
   service-center:
     version: 0.1
-    description: 服务注册及发现
-    archiveName: app.jar
+    description: eurekaServer(服务注册及发现)+api-gateway(API网关)+security(权限检查服务)
+    archiveName: commons.jar
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
     deps:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
       - compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
-    dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE' }
-  api-gateway:
-    version: 0.1
-    description: API网关
-    archiveName: app.jar
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
-    deps:
-      - testCompile 'org.springframework.boot:spring-boot-starter-test'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka'
       - compile 'org.springframework.boot:spring-boot-starter-web'
       - compile 'org.springframework.cloud:spring-cloud-starter-zuul'
-    dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE' }
-  security:
-    version: 0.1
-    description: 权限检查服务
-    archiveName: app.jar
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
-    deps:
-      - testCompile 'org.springframework.boot:spring-boot-starter-test'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka'
       - compile 'org.springframework.cloud:spring-cloud-starter-feign'
       - compile project(':commons')
-      - compile 'org.springframework.boot:spring-boot-starter-web'
       - compile 'mysql:mysql-connector-java:6.0.6'
       - compile 'org.springframework.boot:spring-boot-starter-jdbc'
     dependencyManagement:
       - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE' }
-  account:
+  core-service:
     version: 0.1
-    description: 账户服务
+    description: 核心服务 用户,组织,角色,菜单,字典,区域,附件等基础服务
     archiveName: app.jar
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
     deps:

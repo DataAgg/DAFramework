@@ -19,32 +19,19 @@ DAFramework
 + testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.3.RELEASE'
 
 ## com.dataagg:service-center:0.1
-服务注册及发现
+eurekaServer(服务注册及发现)+api-gateway(API网关)+security(权限检查服务)
 
 + testCompile 'org.springframework.boot:spring-boot-starter-test'
 + compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
-
-## com.dataagg:api-gateway:0.1
-API网关
-
-+ testCompile 'org.springframework.boot:spring-boot-starter-test'
-+ compile 'org.springframework.cloud:spring-cloud-starter-eureka'
 + compile 'org.springframework.boot:spring-boot-starter-web'
 + compile 'org.springframework.cloud:spring-cloud-starter-zuul'
-
-## com.dataagg:security:0.1
-权限检查服务
-
-+ testCompile 'org.springframework.boot:spring-boot-starter-test'
-+ compile 'org.springframework.cloud:spring-cloud-starter-eureka'
 + compile 'org.springframework.cloud:spring-cloud-starter-feign'
 + commons
-+ compile 'org.springframework.boot:spring-boot-starter-web'
 + compile 'mysql:mysql-connector-java:6.0.6'
 + compile 'org.springframework.boot:spring-boot-starter-jdbc'
 
-## com.dataagg:account:0.1
-账户服务
+## com.dataagg:core-service:0.1
+核心服务 用户,组织,角色,菜单,字典,区域,附件等基础服务
 
 + testCompile 'org.springframework.boot:spring-boot-starter-test'
 + compile 'org.springframework.cloud:spring-cloud-starter-eureka'
@@ -61,9 +48,7 @@ API网关
 ```graphLR
 commons[commons]
 service-center[service-center]
-api-gateway[api-gateway]
-security[security]
-security-->commons[commons]
-account[account]
-account-->commons[commons]
+service-center-->commons[commons]
+core-service[core-service]
+core-service-->commons[commons]
 ```

@@ -21,7 +21,7 @@ description: DAFramework
 subProjects:
   commons:
     type: jar
-    description: 公用实体类,VO及常用工具类
+    description: '公用实体类,VO及常用工具类'
     plugins: [java, eclipse, idea]
     archiveName: commons.jar
     deps:
@@ -44,31 +44,36 @@ subProjects:
           root: WARN
           com.dataagg: info
   service-center:
-    description: 服务注册及发现
-    ports: 8761
-    components: [springBoot, eurekaServer]
-    config:
-  api-gateway:
-    description: API网关
+    description: eurekaServer(服务注册及发现)+api-gateway(API网关)+security(权限检查服务)
     ports: 80
-    components: [springBoot, eurekaClient, starterWeb, zuul]
+    components: [springBoot, eurekaServer, starterWeb, zuul, feign, ':commons', starterJdbc]
     config:
       zuul:
         routes:
-          security:
-            path: /security/**
-            serviceId: security
           account:
             path: /account/**
             serviceId: account
-    docker:
-      depends_on: [security]
-  security:
-    description: 权限检查服务
-    ports: 5000
-    components: [springBoot, eurekaClient, feign, ':commons', starterWeb, starterJdbc]
-  account:
-    description: 账户服务
+#  api-gateway:
+#    description: 'API网关'
+#    ports: 80
+#    components: [springBoot, eurekaClient, starterWeb, zuul]
+#    config:
+#      zuul:
+#        routes:
+#          security:
+#            path: /security/**
+#            serviceId: security
+#          account:
+#            path: /account/**
+#            serviceId: account
+#    docker:
+#      depends_on: [security]
+#  security:
+#    description: '权限检查服务'
+#    ports: 5000
+#    components: [springBoot, eurekaClient, feign, ':commons', starterWeb, starterJdbc]
+  core-service:
+    description: "核心服务 用户,组织,角色,菜单,字典,区域,附件等基础服务"
     ports: 6000
     components: [springBoot, eurekaClient, feign, ':commons', starterWeb, starterJdbc, securityClient]
     docker:
