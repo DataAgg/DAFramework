@@ -29,6 +29,6 @@ zuul:
     connect-timeout-millis: 20000
     socket-timeout-millis: 20000
   routes:
-    account:
-      path: /account/**
-      serviceId: account
+    core:
+      path: /core/**
+      serviceId: core-service

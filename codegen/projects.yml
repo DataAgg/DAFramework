@@ -50,28 +50,9 @@ subProjects:
     config:
       zuul:
         routes:
-          account:
-            path: /account/**
-            serviceId: account
-#  api-gateway:
-#    description: 'API网关'
-#    ports: 80
-#    components: [springBoot, eurekaClient, starterWeb, zuul]
-#    config:
-#      zuul:
-#        routes:
-#          security:
-#            path: /security/**
-#            serviceId: security
-#          account:
-#            path: /account/**
-#            serviceId: account
-#    docker:
-#      depends_on: [security]
-#  security:
-#    description: '权限检查服务'
-#    ports: 5000
-#    components: [springBoot, eurekaClient, feign, ':commons', starterWeb, starterJdbc]
+          core:
+            path: /core/**
+            serviceId: core-service
   core-service:
     description: "核心服务 用户,组织,角色,菜单,字典,区域,附件等基础服务"
     ports: 6000

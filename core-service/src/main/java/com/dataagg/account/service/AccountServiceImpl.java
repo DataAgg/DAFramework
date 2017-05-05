@@ -1,15 +1,16 @@
 package com.dataagg.account.service;
 
-import com.dataagg.account.client.SecurityServiceClient;
-import com.dataagg.account.dao.AccountDao;
-import com.dataagg.commons.domain.EAccount;
-import com.dataagg.commons.domain.EUser;
 import org.nutz.dao.Cnd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+
+import com.dataagg.account.client.SecurityServiceClient;
+import com.dataagg.commons.dao.AccountDao;
+import com.dataagg.commons.domain.EAccount;
+import com.dataagg.commons.domain.EUser;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -28,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public EAccount findByName(String accountName) {
 		Assert.hasLength(accountName, "");
-		return accountDao.fetch(Cnd.where("full_name","=" , accountName));
+		return accountDao.fetch(Cnd.where("full_name", "=", accountName));
 	}
 
 	/**
