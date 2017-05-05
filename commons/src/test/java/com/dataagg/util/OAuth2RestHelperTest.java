@@ -1,4 +1,4 @@
-package com.dataagg.utils;
+package com.dataagg.util;
 
 import static org.junit.Assert.*;
 

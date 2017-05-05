@@ -1,5 +1,7 @@
 package com.dataagg.commons.domain;
 
+import org.nutz.dao.entity.annotation.ColDefine;
+import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Comment;
 import org.nutz.dao.entity.annotation.Id;
@@ -15,8 +17,16 @@ public class EAuthority implements GrantedAuthority {
 	private static final long serialVersionUID = 7423414401567180611L;
 	@Id
 	private Long id;
-	@Column
+
+	@Column(hump = true)
+	@ColDefine(type = ColType.VARCHAR, width = 64, notNull = true)
+	@Comment("权限标识")
 	private String name;
+
+	@Column(hump = true)
+	@ColDefine(type = ColType.VARCHAR, width = 200, notNull = true)
+	@Comment("描述")
+	private String description;
 
 	public Long getId() {
 		return id;
@@ -37,5 +47,13 @@ public class EAuthority implements GrantedAuthority {
 	@Override
 	public String getAuthority() {
 		return name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
