@@ -7,11 +7,17 @@ plugins {
 
 group = 'com.dataagg'
 version = '0.1'
-description = """eurekaServer(服务注册及发现)"""
+description = """api-gateway(API网关)+security(权限检查服务)"""
 
 dependencies {
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
-	compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
+	compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.cloud:spring-cloud-starter-zuul'
+	compile 'org.springframework.cloud:spring-cloud-starter-feign'
+	compile project(':commons')
+	compile 'mysql:mysql-connector-java:6.0.6'
+	compile 'org.springframework.boot:spring-boot-starter-jdbc'
 }
 
 dependencyManagement {
@@ -19,9 +25,9 @@ imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.
 }
 
 jar {
-	baseName = 'service-center'
+	baseName = 'api-gateway'
 	version = '0.1'
-	archiveName = 'app.jar'
+	archiveName = 'commons.jar'
 }
 
 sourceCompatibility = 1.8

@@ -19,10 +19,16 @@ DAFramework
 + testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.3.RELEASE'
 
 ## com.dataagg:service-center:0.1
-eurekaServer(服务注册及发现)+api-gateway(API网关)+security(权限检查服务)
+eurekaServer(服务注册及发现)
 
 + testCompile 'org.springframework.boot:spring-boot-starter-test'
 + compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
+
+## com.dataagg:api-gateway:0.1
+api-gateway(API网关)+security(权限检查服务)
+
++ testCompile 'org.springframework.boot:spring-boot-starter-test'
++ compile 'org.springframework.cloud:spring-cloud-starter-eureka'
 + compile 'org.springframework.boot:spring-boot-starter-web'
 + compile 'org.springframework.cloud:spring-cloud-starter-zuul'
 + compile 'org.springframework.cloud:spring-cloud-starter-feign'
@@ -48,7 +54,8 @@ eurekaServer(服务注册及发现)+api-gateway(API网关)+security(权限检查
 ```graphLR
 commons[commons]
 service-center[service-center]
-service-center-->commons[commons]
+api-gateway[api-gateway]
+api-gateway-->commons[commons]
 core-service[core-service]
 core-service-->commons[commons]
 ```

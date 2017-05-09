@@ -3,6 +3,12 @@ services:
   service-center:
     image: java:8-jre
     volumes: ['../service-center/build/libs/:/app/']
+    ports: ['8761:8761']
+    expose: [8761]
+    command: [java, '-Djava.security.egd=file:/dev/./urandom', -Xmx200m, -jar, /app/app.jar]
+  api-gateway:
+    image: java:8-jre
+    volumes: ['../api-gateway/build/libs/:/app/']
     ports: ['80:80']
     expose: [80]
     command: [java, '-Djava.security.egd=file:/dev/./urandom', -Xmx200m, -jar, /app/app.jar]

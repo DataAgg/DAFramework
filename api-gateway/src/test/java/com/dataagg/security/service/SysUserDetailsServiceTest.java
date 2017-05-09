@@ -17,7 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import com.dataagg.ServiceCenterApplication;
+import com.dataagg.APIGatewayApplication;
 import com.dataagg.commons.dao.AuthorityDao;
 import com.dataagg.commons.dao.UserDao;
 import com.dataagg.commons.domain.EAccount;
@@ -33,7 +33,7 @@ import static org.springframework.util.Assert.notNull;
 import jodd.util.StringUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = ServiceCenterApplication.class)
+@SpringBootTest(classes = APIGatewayApplication.class)
 public class SysUserDetailsServiceTest {
 	@Autowired
 	private UserDao userDao;

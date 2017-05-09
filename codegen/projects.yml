@@ -44,9 +44,14 @@ subProjects:
           root: WARN
           com.dataagg: info
   service-center:
-    description: eurekaServer(服务注册及发现)+api-gateway(API网关)+security(权限检查服务)
+    description: eurekaServer(服务注册及发现)
+    ports: 8761
+    components: [springBoot, eurekaServer]
+    config:
+  api-gateway:
+    description: api-gateway(API网关)+security(权限检查服务)
     ports: 80
-    components: [springBoot, eurekaServer, starterWeb, zuul, feign, ':commons', starterJdbc]
+    components: [springBoot, eurekaClient, starterWeb, zuul, feign, ':commons', starterJdbc]
     config:
       zuul:
         routes:
@@ -59,3 +64,14 @@ subProjects:
     components: [springBoot, eurekaClient, feign, ':commons', starterWeb, starterJdbc, securityClient]
     docker:
       depends_on: [api-gateway]
+    config:
+      logging:
+        level:
+          root: WARN
+          com.dataagg: info
+      file:
+        rootPath: e:\\wdtc\\html
+        filePath: /files
+      sms:
+        #短信接口是否允许发送的标识，true允许，false不允许
+        canSend: false

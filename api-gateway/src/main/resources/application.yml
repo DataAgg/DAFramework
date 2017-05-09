@@ -1,13 +1,13 @@
 spring:
   application:
-    name: core-service
+    name: api-gateway
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull
     username: dataagg
     password: 3yXcH7AIK7Wrs1sQeGJe
 server:
-  port: 6000
+  port: 80
 logging:
   level:
     root: WARN
@@ -16,18 +16,15 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://service-center:8761/eureka/
-security:
-  oauth2:
-    resource:
-      user-info-uri: http://api-gateway:5000/security/users/current
-    client:
-      clientId: core-service
-      clientSecret: YFzCAfocMInyJ5YaO805
-      accessTokenUri: http://api-gateway:5000/security/oauth/token
-      grant-type: client_credentials
-      scope: server
-file:
-  rootPath: e:\\wdtc\\html
-  filePath: /files
-sms:
-  canSend: false
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+  routes:
+    core:
+      path: /core/**
+      serviceId: core-service

@@ -1,17 +1,11 @@
 spring:
   application:
     name: service-center
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dataagg?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull
-    username: dataagg
-    password: 3yXcH7AIK7Wrs1sQeGJe
 server:
-  port: 80
+  port: 8761
 logging:
   level:
     root: WARN
-    com.dataagg: info
 eureka:
   instance:
     prefer-ip-address: true
@@ -19,16 +13,4 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://service-center/eureka/
-ribbon:
-  ReadTimeout: 20000
-  ConnectTimeout: 20000
-zuul:
-  ignoredServices: '*'
-  host:
-    connect-timeout-millis: 20000
-    socket-timeout-millis: 20000
-  routes:
-    core:
-      path: /core/**
-      serviceId: core-service
+      defaultZone: http://service-center:8761/eureka/
