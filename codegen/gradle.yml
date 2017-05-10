@@ -27,16 +27,6 @@ subProjects:
       - compile 'org.springframework.security.oauth:spring-security-oauth2:2.0.13.RELEASE'
       - testCompile 'junit:junit:4.12'
       - testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.3.RELEASE'
-  service-center:
-    version: 0.1
-    description: eurekaServer(服务注册及发现)
-    archiveName: app.jar
-    plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
-    deps:
-      - testCompile 'org.springframework.boot:spring-boot-starter-test'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
-    dependencyManagement:
-      - imports { mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE' }
   api-gateway:
     version: 0.1
     description: api-gateway(API网关)+security(权限检查服务)
@@ -44,7 +34,6 @@ subProjects:
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
     deps:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka'
       - compile 'org.springframework.boot:spring-boot-starter-web'
       - compile 'org.springframework.cloud:spring-cloud-starter-zuul'
       - compile 'org.springframework.cloud:spring-cloud-starter-feign'
@@ -60,7 +49,6 @@ subProjects:
     plugins: [java, eclipse, idea, 'org.springframework.boot:1.5.3.RELEASE']
     deps:
       - testCompile 'org.springframework.boot:spring-boot-starter-test'
-      - compile 'org.springframework.cloud:spring-cloud-starter-eureka'
       - compile 'org.springframework.cloud:spring-cloud-starter-feign'
       - compile project(':commons')
       - compile 'org.springframework.boot:spring-boot-starter-web'

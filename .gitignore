@@ -24,3 +24,4 @@
 **/npm-debug.log
 **/yarn.lock
 /gateway/src/main/resources/public
+/core-service/src/main/resources/public

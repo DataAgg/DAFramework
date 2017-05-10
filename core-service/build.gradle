@@ -11,7 +11,6 @@ description = """核心服务 用户,组织,角色,菜单,字典,区域,附件�
 
 dependencies {
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
-	compile 'org.springframework.cloud:spring-cloud-starter-eureka'
 	compile 'org.springframework.cloud:spring-cloud-starter-feign'
 	compile project(':commons')
 	compile 'org.springframework.boot:spring-boot-starter-web'

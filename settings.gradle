@@ -1,4 +1,3 @@
 		include ':commons'
-		include ':service-center'
 		include ':api-gateway'
 		include ':core-service'

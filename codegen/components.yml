@@ -89,8 +89,10 @@ zuul:
     ribbon:
       ReadTimeout: 20000
       ConnectTimeout: 20000
+      eureka:
+        enabled: false
     zuul:
-      ignoredServices: '*'
+      # ignoredServices: '*'
       host:
         connect-timeout-millis: 20000
         socket-timeout-millis: 20000

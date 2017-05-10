@@ -11,6 +11,3 @@ server:
 logging:
   level:
     root: WARN
-eureka:
-  client:
-    enabled: false

@@ -12,19 +12,17 @@ logging:
   level:
     root: WARN
     com.dataagg: info
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://service-center:8761/eureka/
 ribbon:
   ReadTimeout: 20000
   ConnectTimeout: 20000
+  eureka:
+    enabled: false
 zuul:
-  ignoredServices: '*'
   host:
     connect-timeout-millis: 20000
     socket-timeout-millis: 20000
   routes:
     core:
-      path: /core/**
-      serviceId: core-service
+      path: /**
+      url: http://127.0.0.1:6000/
+      stripPrefix: false

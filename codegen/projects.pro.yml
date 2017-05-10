@@ -43,27 +43,25 @@ subProjects:
         level:
           root: WARN
           com.dataagg: info
-  # service-center:
-  #   description: eurekaServer(服务注册及发现)
-  #   ports: 8761
-  #   components: [springBoot, eurekaServer]
-  #   config:
+  service-center:
+    description: eurekaServer(服务注册及发现)
+    ports: 8761
+    components: [springBoot, eurekaServer]
+    config:
   api-gateway:
     description: api-gateway(API网关)+security(权限检查服务)
     ports: 80
-    components: [springBoot, starterWeb, zuul, feign, ':commons', starterJdbc]
+    components: [springBoot, eurekaClient, starterWeb, zuul, feign, ':commons', starterJdbc]
     config:
       zuul:
         routes:
           core:
-            path: /**
-            url: http://127.0.0.1:6000/
-            stripPrefix: false
-            # serviceId: core-service
+            path: /core/**
+            serviceId: core-service
   core-service:
     description: "核心服务 用户,组织,角色,菜单,字典,区域,附件等基础服务"
     ports: 6000
-    components: [springBoot, feign, ':commons', starterWeb, starterJdbc, securityClient]
+    components: [springBoot, eurekaClient, feign, ':commons', starterWeb, starterJdbc, securityClient]
     docker:
       depends_on: [api-gateway]
     config:

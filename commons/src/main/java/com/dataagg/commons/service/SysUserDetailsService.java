@@ -384,4 +384,16 @@ public class SysUserDetailsService implements UserDetailsService {
 		return user == null ? false : true;
 
 	}
+
+	/**
+	 * @TODO
+	 * 根据token检查对应用户是否拥有权限
+	 * @param token
+	 * @param Authorities
+	 * @return
+	 */
+	public boolean checkAuthority(String token, String... Authorities) {
+
+		return false;
+	}
 }

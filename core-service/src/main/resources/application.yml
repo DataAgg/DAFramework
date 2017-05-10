@@ -12,10 +12,6 @@ logging:
   level:
     root: WARN
     com.dataagg: info
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://service-center:8761/eureka/
 security:
   oauth2:
     resource:
